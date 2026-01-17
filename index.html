@@ -76,6 +76,46 @@ h3{font-size:42px;color:#2c7be5;}
     color:white;
 }
 
+.dropdown-row{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    align-items:center;
+}
+select{
+    padding:26px;
+    font-size:40px;
+    width:100%;
+    max-width:520px;
+    border-radius:14px;
+    border:3px solid #1e6fb8;
+}
+.refresh-btn{
+    padding:22px 26px;
+    font-size:34px;
+    border:none;
+    border-radius:12px;
+    background:#ff9800;
+    color:white;
+}
+
+.syllabus-box{
+    border-left:8px solid #2ecc71;
+    background:#f1fbf5;
+    padding:30px;
+    display:none;
+}
+.planner-box{
+    border-left:8px solid #3498db;
+    background:#f2f8ff;
+    padding:30px;
+    display:none;
+}
+.homework-box{
+    border-left:8px solid #f39c12;
+    background:#fff8e1;
+    padding:30px;
+}
 .date-tag{
     font-size:36px;
     color:#444;
@@ -84,32 +124,39 @@ h3{font-size:42px;color:#2c7be5;}
 </style>
 
 <script>
-window.onload = function(){
+function showSection(id){
+    syllabusSection.style.display="none";
+    plannerSection.style.display="none";
+    document.getElementById(id).style.display="block";
+}
+function showClass(type){
+    let cls=document.getElementById(type+"Class").value;
+    document.querySelectorAll("."+type+"Content")
+      .forEach(c=>c.style.display="none");
+    if(cls) document.getElementById(type+cls).style.display="block";
+}
+function refreshPage(){ location.reload(); }
 
-    const options = { day:'numeric', month:'long', year:'numeric' };
-    const today = new Date();
+window.onload=function(){
+    const today=new Date();
+    const opt={day:'numeric',month:'long',year:'numeric'};
+    document.querySelectorAll(".auto-date")
+      .forEach(e=>e.innerText=today.toLocaleDateString("en-IN",opt));
 
-    /* Homework date */
-    document.querySelectorAll(".auto-today")
-        .forEach(el => el.innerText = today.toLocaleDateString("en-IN", options));
+    const day=today.getDay();
+    const monday=new Date(today);
+    monday.setDate(today.getDate()-(day===0?6:day-1));
+    const saturday=new Date(monday);
+    saturday.setDate(monday.getDate()+5);
 
-    /* Weekly range (Monday–Saturday) */
-    const day = today.getDay();
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
-
-    const saturday = new Date(monday);
-    saturday.setDate(monday.getDate() + 5);
-
-    document.querySelectorAll(".auto-week-start")
-        .forEach(el => el.innerText = monday.toLocaleDateString("en-IN", options));
-
-    document.querySelectorAll(".auto-week-end")
-        .forEach(el => el.innerText = saturday.toLocaleDateString("en-IN", options));
+    document.querySelectorAll(".week-range")
+      .forEach(e=>e.innerText=
+        monday.toLocaleDateString("en-IN",opt)+" – "+
+        saturday.toLocaleDateString("en-IN",opt));
 };
 </script>
-
 </head>
+
 <body>
 
 <header>
@@ -121,7 +168,7 @@ window.onload = function(){
 <section>
 <h2>📢 Notice Board</h2>
 <div class="notice-board">
-{{NOTICE_BOARD_CONTENT}}
+Half-yearly examinations will begin next month. Students must complete syllabus on time. Parents are requested to monitor daily homework and attendance regularly.
 </div>
 </section>
 
@@ -129,26 +176,89 @@ window.onload = function(){
 <h2>📘 Academic Directives</h2>
 
 <div class="directive-buttons">
-<button class="btn-syllabus">📚 Syllabus</button>
-<button class="btn-planner">✔ Weekly Planner</button>
+<button class="btn-syllabus" onclick="showSection('syllabusSection')">📚 Syllabus</button>
+<button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
+</div>
+
+<!-- SYLLABUS -->
+<div id="syllabusSection" style="display:none;">
+<h3>📚 Syllabus</h3>
+
+<div class="dropdown-row">
+<select id="syllabusClass" onchange="showClass('syllabus')">
+<option value="">Select Class</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
+</select>
+<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+</div>
+
+<div id="syllabusClass1" class="syllabus-box syllabusContent">English, Maths, EVS – Basic literacy & numeracy</div>
+<div id="syllabusClass2" class="syllabus-box syllabusContent">English, Maths, EVS – Foundational concepts</div>
+<div id="syllabusClass3" class="syllabus-box syllabusContent">English, Maths, EVS – Paragraphs, tables, environment</div>
+<div id="syllabusClass4" class="syllabus-box syllabusContent">English, Maths, Science – Grammar, fractions, matter</div>
+<div id="syllabusClass5" class="syllabus-box syllabusContent">English, Maths, Science – Writing, decimals, human body</div>
+<div id="syllabusClass6" class="syllabus-box syllabusContent">English, Maths, Science, SST – NCERT basics</div>
+<div id="syllabusClass7" class="syllabus-box syllabusContent">English, Maths, Science, SST – Algebra & civics</div>
+<div id="syllabusClass8" class="syllabus-box syllabusContent">English, Maths, Science, SST – Linear equations & force</div>
+
+<div id="syllabusClass9" class="syllabus-box syllabusContent">
+<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Geometry, Statistics<br><br>
+<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Matter, Cell, Tissues<br><br>
+<b>Social Science:</b> French Revolution, Geography of India, Democracy, Economics<br><br>
+<b>English:</b> Beehive, Moments, Grammar & Writing
+</div>
 </div>
 
 <!-- WEEKLY PLANNER -->
-<h3>Weekly Planner – Class 9</h3>
-<div class="date-tag">
-Week:
-<span class="auto-week-start">{{WEEK_START_DATE}}</span>
- –
-<span class="auto-week-end">{{WEEK_END_DATE}}</span>
+<div id="plannerSection" style="display:none;">
+<h3>Weekly Planner</h3>
+<div class="date-tag">Week: <span class="week-range"></span></div>
+
+<div class="dropdown-row">
+<select id="plannerClass" onchange="showClass('planner')">
+<option value="">Select Class</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
+</select>
+<button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
-<!-- HOMEWORK -->
-<h3>📝 Homework</h3>
-<div class="date-tag">
-Date:
-<span class="auto-today">{{HOMEWORK_DATE}}</span>
-</div>
+<div id="plannerClass1" class="planner-box plannerContent">Alphabet practice, counting, picture talk</div>
+<div id="plannerClass2" class="planner-box plannerContent">Reading practice, addition, EVS discussion</div>
+<div id="plannerClass3" class="planner-box plannerContent">Paragraph writing, tables, food chapter</div>
+<div id="plannerClass4" class="planner-box plannerContent">Grammar revision, fractions, science notes</div>
+<div id="plannerClass5" class="planner-box plannerContent">Writing skills, decimals, body systems</div>
+<div id="plannerClass6" class="planner-box plannerContent">Integers, food components, history basics</div>
+<div id="plannerClass7" class="planner-box plannerContent">Algebra practice, nutrition, civics</div>
+<div id="plannerClass8" class="planner-box plannerContent">Linear equations, force & pressure</div>
 
+<div id="plannerClass9" class="planner-box plannerContent">
+<b>Maths:</b> Polynomials Ex 2.1–2.2 (Pg 28–39)<br>
+<b>Science:</b> Motion numericals & derivations<br>
+<b>SST:</b> French Revolution Pg 5–18 + map<br>
+<b>English:</b> Beehive Ch 3 + Grammar
+</div>
+</div>
+</section>
+
+<section>
+<h2>📝 Homework</h2>
+<div class="date-tag">Date: <span class="auto-date"></span></div>
+
+<div class="homework-box">
+<b>Class 1:</b> Alphabet A–F, counting 1–30, body parts drawing<br><br>
+<b>Class 2:</b> Reading lesson 4, addition Ex 4.1, EVS notes<br><br>
+<b>Class 3:</b> Paragraph writing, tables 3–8, EVS Q&A<br><br>
+<b>Class 4:</b> Nouns exercise, fractions Ex 6.3, science answers<br><br>
+<b>Class 5:</b> Informal letter, decimals Ex 7.2, diagram work<br><br>
+<b>Class 6:</b> Vocabulary, integers Ex 6.3, science worksheet<br><br>
+<b>Class 7:</b> Notice writing, algebra Ex 9.2, nutrition notes<br><br>
+<b>Class 8:</b> Active-Passive, linear equations Ex 2.4, numericals<br><br>
+<b>Class 9:</b> Polynomials Ex 2.2, motion derivations, SST Q&A
+</div>
 </section>
 
 </body>
