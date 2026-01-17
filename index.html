@@ -5,7 +5,6 @@
 <title>MAQBOOL GARDEN SR. SEC. SCHOOL</title>
 
 <style>
-/* ===== GLOBAL ===== */
 body{
     margin:0;
     font-family:"Segoe UI", Arial, sans-serif;
@@ -14,36 +13,26 @@ body{
     line-height:1.8;
     color:#1f2d3d;
 }
-
-/* ===== HEADER ===== */
 header{
     background:#0b1c3d;
     padding:60px 20px;
     text-align:center;
 }
-
-/* ===== SCHOOL NAME (ENHANCED, NOT FLASHY) ===== */
 .school-name-frame{
     display:inline-block;
     padding:34px 46px;
     border:5px solid #ff9800;
     border-radius:30px;
-    background:
-        linear-gradient(180deg,#ffffff,#e6f1ff);
-    box-shadow:
-        inset 0 6px 0 #1e6fb8,
-        0 8px 22px rgba(0,0,0,0.25);
+    background:linear-gradient(180deg,#ffffff,#e6f1ff);
+    box-shadow:inset 0 6px 0 #1e6fb8, 0 8px 22px rgba(0,0,0,0.25);
 }
-
 header h1{
     font-size:90px;
     margin:0;
     color:#0b1c3d;
     font-weight:800;
-    letter-spacing:1px;
 }
 
-/* ===== SECTIONS ===== */
 section{
     margin:25px auto;
     background:white;
@@ -56,7 +45,6 @@ section{
 h2{font-size:48px;color:#1e6fb8;}
 h3{font-size:42px;color:#2c7be5;}
 
-/* ===== NOTICE BOARD ===== */
 .notice-board{
     min-height:520px;
     border:3px dashed #1e6fb8;
@@ -65,14 +53,12 @@ h3{font-size:42px;color:#2c7be5;}
     background:#f4f9ff;
 }
 
-/* ===== BUTTONS (DISTINCTIVE) ===== */
 .directive-buttons{
     display:flex;
     gap:22px;
     justify-content:center;
     margin:30px 0;
 }
-
 .btn-syllabus{
     flex:1;
     padding:26px;
@@ -82,7 +68,6 @@ h3{font-size:42px;color:#2c7be5;}
     background:linear-gradient(#2ecc71,#27ae60);
     color:white;
 }
-
 .btn-planner{
     flex:1;
     padding:26px;
@@ -93,7 +78,6 @@ h3{font-size:42px;color:#2c7be5;}
     color:white;
 }
 
-/* ===== DROPDOWN + REFRESH ===== */
 .dropdown-row{
     display:flex;
     gap:16px;
@@ -120,7 +104,6 @@ select{
     cursor:pointer;
 }
 
-/* ===== CONTENT AREAS ===== */
 .syllabus-box{
     border-left:8px solid #2ecc71;
     background:#f1fbf5;
@@ -135,11 +118,11 @@ select{
     display:none;
 }
 
-/* ===== HOMEWORK ===== */
-.homework-board{
-    background:#fff8e1;
+.homework-box{
     border-left:8px solid #f39c12;
+    background:#fff8e1;
     padding:30px;
+    display:none;
 }
 
 .date-tag{
@@ -153,34 +136,20 @@ select{
 function showSection(id){
     syllabusSection.style.display="none";
     plannerSection.style.display="none";
+    homeworkSection.style.display="none";
     document.getElementById(id).style.display="block";
 }
-
 function showClass(type){
     let cls=document.getElementById(type+"Class").value;
     document.querySelectorAll("."+type+"Content")
         .forEach(c=>c.style.display="none");
     if(cls) document.getElementById(type+cls).style.display="block";
 }
+function refreshPage(){ location.reload(); }
 
-function refreshPage(){
-    location.reload();
-}
-
-/* Week range */
 window.onload=function(){
     const now=new Date();
-    const day=now.getDay();
-    const monday=new Date(now);
-    monday.setDate(now.getDate()-(day===0?6:day-1));
-    const saturday=new Date(monday);
-    saturday.setDate(monday.getDate()+5);
     const opt={day:'numeric',month:'long',year:'numeric'};
-    document.querySelectorAll(".week-range")
-        .forEach(e=>e.innerText=
-            monday.toLocaleDateString("en-IN",opt)+" – "+
-            saturday.toLocaleDateString("en-IN",opt)
-        );
     document.querySelectorAll(".auto-date")
         .forEach(e=>e.innerText=now.toLocaleDateString("en-IN",opt));
 };
@@ -198,7 +167,7 @@ window.onload=function(){
 <section>
 <h2>📢 Notice Board</h2>
 <div class="notice-board">
-Students must strictly follow the weekly subject-wise plan. Homework completion and revision are compulsory.
+{{NOTICE_BOARD_CONTENT}}
 </div>
 </section>
 
@@ -208,56 +177,117 @@ Students must strictly follow the weekly subject-wise plan. Homework completion 
 <div class="directive-buttons">
 <button class="btn-syllabus" onclick="showSection('syllabusSection')">📚 Syllabus</button>
 <button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
+<button class="btn-planner" onclick="showSection('homeworkSection')">📝 Homework</button>
 </div>
 
-<!-- SYLLABUS -->
+<!-- ================= SYLLABUS ================= -->
 <div id="syllabusSection" style="display:none;">
-<h3>📚 Class 9 – Complete Syllabus</h3>
+<h3>📚 Syllabus</h3>
 
 <div class="dropdown-row">
 <select id="syllabusClass" onchange="showClass('syllabus')">
 <option value="">Select Class</option>
-<option>Class9</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
 </select>
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
 <div id="syllabusClass9" class="syllabus-box syllabusContent">
-<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry, Lines & Angles, Triangles, Circles, Statistics<br><br>
-<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Sound, Matter, Atoms & Molecules, Cell & Tissues<br><br>
-<b>Social Science:</b> French Revolution, Physical Features of India, Democracy, Economics<br><br>
-<b>English:</b> Beehive Ch 1–9, Moments Ch 1–6, Grammar & Writing
-</div>
+{{SYLLABUS_CLASS_9}}
 </div>
 
-<!-- WEEKLY PLANNER -->
+<div id="syllabusClass8" class="syllabus-box syllabusContent">
+{{SYLLABUS_CLASS_8}}
+</div>
+
+<div id="syllabusClass7" class="syllabus-box syllabusContent">
+{{SYLLABUS_CLASS_7}}
+</div>
+
+<!-- repeat same pattern for Class1–6 -->
+</div>
+
+<!-- ================= WEEKLY PLANNER ================= -->
 <div id="plannerSection" style="display:none;">
-<h3>Weekly Subject-wise Plan – Class 9</h3>
-<div class="date-tag">Week: <span class="week-range"></span></div>
+<h3>Weekly Planner</h3>
+<div class="date-tag">Week: {{WEEK_START_DATE}} – {{WEEK_END_DATE}}</div>
 
 <div class="dropdown-row">
 <select id="plannerClass" onchange="showClass('planner')">
 <option value="">Select Class</option>
-<option>Class9</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
 </select>
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
 <div id="plannerClass9" class="planner-box plannerContent">
-<b>Mathematics:</b> Polynomials Ex 2.1–2.2, Linear Equations (intro), revision MCQs<br><br>
-<b>Science:</b> Motion numericals & derivations, Atoms & Molecules laws<br><br>
-<b>Social Science:</b> French Revolution (Pg 5–18), Civics – Democracy<br><br>
-<b>English:</b> Beehive Ch 3, Grammar – Tenses, Diary writing
+{{PLANNER_CLASS_9}}
 </div>
-</div>
-</section>
 
-<section>
-<h2>📝 Homework (All Classes)</h2>
-<div class="homework-board">
-<b>Date:</b> <span class="auto-date"></span><br><br>
-Homework content remains exactly as previously defined for all classes.
+<div id="plannerClass8" class="planner-box plannerContent">
+{{PLANNER_CLASS_8}}
 </div>
+
+<!-- repeat same pattern for Class1–7 -->
+</div>
+
+<!-- ================= HOMEWORK ================= -->
+<div id="homeworkSection" style="display:none;">
+<h3>📝 Homework</h3>
+<div class="date-tag">Date: <span class="auto-date"></span></div>
+
+<div class="dropdown-row">
+<select id="homeworkClass" onchange="showClass('homework')">
+<option value="">Select Class</option>
+<option>Class1</option><option>Class2</option><option>Class3</option>
+<option>Class4</option><option>Class5</option><option>Class6</option>
+<option>Class7</option><option>Class8</option><option>Class9</option>
+</select>
+<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+</div>
+
+<div id="homeworkClass1" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_1}}
+</div>
+
+<div id="homeworkClass2" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_2}}
+</div>
+
+<div id="homeworkClass3" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_3}}
+</div>
+
+<div id="homeworkClass4" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_4}}
+</div>
+
+<div id="homeworkClass5" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_5}}
+</div>
+
+<div id="homeworkClass6" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_6}}
+</div>
+
+<div id="homeworkClass7" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_7}}
+</div>
+
+<div id="homeworkClass8" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_8}}
+</div>
+
+<div id="homeworkClass9" class="homework-box homeworkContent">
+{{HOMEWORK_CLASS_9}}
+</div>
+
+</div>
+
 </section>
 
 </body>
