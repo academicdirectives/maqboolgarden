@@ -32,7 +32,6 @@ header h1{
     color:#0b1c3d;
     font-weight:800;
 }
-
 section{
     margin:25px auto;
     background:white;
@@ -41,7 +40,6 @@ section{
     box-shadow:0 6px 18px rgba(0,0,0,0.12);
     max-width:900px;
 }
-
 h2{font-size:48px;color:#1e6fb8;}
 h3{font-size:42px;color:#2c7be5;}
 
@@ -78,50 +76,6 @@ h3{font-size:42px;color:#2c7be5;}
     color:white;
 }
 
-.dropdown-row{
-    display:flex;
-    gap:16px;
-    align-items:center;
-    justify-content:center;
-}
-
-select{
-    padding:26px;
-    font-size:40px;
-    width:100%;
-    max-width:520px;
-    border-radius:14px;
-    border:3px solid #1e6fb8;
-}
-
-.refresh-btn{
-    padding:22px 26px;
-    font-size:34px;
-    border:none;
-    border-radius:12px;
-    background:#ff9800;
-    color:white;
-    cursor:pointer;
-}
-
-.syllabus-box{
-    border-left:8px solid #2ecc71;
-    background:#f1fbf5;
-    padding:30px;
-    display:none;
-}
-.planner-box{
-    border-left:8px solid #3498db;
-    background:#f2f8ff;
-    padding:30px;
-    display:none;
-}
-.homework-box{
-    border-left:8px solid #f39c12;
-    background:#fff8e1;
-    padding:30px;
-}
-
 .date-tag{
     font-size:36px;
     color:#444;
@@ -130,18 +84,29 @@ select{
 </style>
 
 <script>
-function showSection(id){
-    syllabusSection.style.display="none";
-    plannerSection.style.display="none";
-    document.getElementById(id).style.display="block";
-}
-function showClass(type){
-    let cls=document.getElementById(type+"Class").value;
-    document.querySelectorAll("."+type+"Content")
-        .forEach(c=>c.style.display="none");
-    if(cls) document.getElementById(type+cls).style.display="block";
-}
-function refreshPage(){ location.reload(); }
+window.onload = function(){
+
+    const options = { day:'numeric', month:'long', year:'numeric' };
+    const today = new Date();
+
+    /* Homework date */
+    document.querySelectorAll(".auto-today")
+        .forEach(el => el.innerText = today.toLocaleDateString("en-IN", options));
+
+    /* Weekly range (Monday–Saturday) */
+    const day = today.getDay();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - (day === 0 ? 6 : day - 1));
+
+    const saturday = new Date(monday);
+    saturday.setDate(monday.getDate() + 5);
+
+    document.querySelectorAll(".auto-week-start")
+        .forEach(el => el.innerText = monday.toLocaleDateString("en-IN", options));
+
+    document.querySelectorAll(".auto-week-end")
+        .forEach(el => el.innerText = saturday.toLocaleDateString("en-IN", options));
+};
 </script>
 
 </head>
@@ -156,7 +121,7 @@ function refreshPage(){ location.reload(); }
 <section>
 <h2>📢 Notice Board</h2>
 <div class="notice-board">
-{Hello}
+{{NOTICE_BOARD_CONTENT}}
 </div>
 </section>
 
@@ -164,93 +129,26 @@ function refreshPage(){ location.reload(); }
 <h2>📘 Academic Directives</h2>
 
 <div class="directive-buttons">
-<button class="btn-syllabus" onclick="showSection('syllabusSection')">📚 Syllabus</button>
-<button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
+<button class="btn-syllabus">📚 Syllabus</button>
+<button class="btn-planner">✔ Weekly Planner</button>
 </div>
 
-<!-- ================= SYLLABUS ================= -->
-<div id="syllabusSection" style="display:none;">
-<h3>📚 Syllabus</h3>
-
-<div class="dropdown-row">
-<select id="syllabusClass" onchange="showClass('syllabus')">
-<option value="">Select Class</option>
-<option>Class1</option><option>Class2</option><option>Class3</option>
-<option>Class4</option><option>Class5</option><option>Class6</option>
-<option>Class7</option><option>Class8</option><option>Class9</option>
-</select>
-<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+<!-- WEEKLY PLANNER -->
+<h3>Weekly Planner – Class 9</h3>
+<div class="date-tag">
+Week:
+<span class="auto-week-start">{{WEEK_START_DATE}}</span>
+ –
+<span class="auto-week-end">{{WEEK_END_DATE}}</span>
 </div>
 
-<div id="syllabusClass1" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_1}}</div>
-<div id="syllabusClass2" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_2}}</div>
-<div id="syllabusClass3" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_3}}</div>
-<div id="syllabusClass4" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_4}}</div>
-<div id="syllabusClass5" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_5}}</div>
-<div id="syllabusClass6" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_6}}</div>
-<div id="syllabusClass7" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_7}}</div>
-<div id="syllabusClass8" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_8}}</div>
-
-<div id="syllabusClass9" class="syllabus-box syllabusContent">
-{
-<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry, Lines & Angles, Triangles, Circles, Statistics<br><br>
-<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Sound, Matter, Atoms & Molecules, Cell – Structure & Function, Tissues<br><br>
-<b>Social Science:</b> French Revolution, Physical Features of India, Climate, Democracy, Economics – Village Palampur<br><br>
-<b>English:</b> Beehive Ch 1–9, Moments Ch 1–6, Grammar & Writing Skills}
-</div>
+<!-- HOMEWORK -->
+<h3>📝 Homework</h3>
+<div class="date-tag">
+Date:
+<span class="auto-today">{{HOMEWORK_DATE}}</span>
 </div>
 
-<!-- ================= WEEKLY PLANNER ================= -->
-<div id="plannerSection" style="display:none;">
-<h3>Weekly Planner</h3>
-<div class="date-tag">Week: {{WEEK_START_DATE}} – {{WEEK_END_DATE}}</div>
-
-<div class="dropdown-row">
-<select id="plannerClass" onchange="showClass('planner')">
-<option value="">Select Class</option>
-<option>Class1</option><option>Class2</option><option>Class3</option>
-<option>Class4</option><option>Class5</option><option>Class6</option>
-<option>Class7</option><option>Class8</option><option>Class9</option>
-</select>
-<button class="refresh-btn" onclick="refreshPage()">🔄</button>
-</div>
-
-<div id="plannerClass1" class="planner-box plannerContent">{{PLANNER_CLASS_1}}</div>
-<div id="plannerClass2" class="planner-box plannerContent">{{PLANNER_CLASS_2}}</div>
-<div id="plannerClass3" class="planner-box plannerContent">{{PLANNER_CLASS_3}}</div>
-<div id="plannerClass4" class="planner-box plannerContent">{{PLANNER_CLASS_4}}</div>
-<div id="plannerClass5" class="planner-box plannerContent">{{PLANNER_CLASS_5}}</div>
-<div id="plannerClass6" class="planner-box plannerContent">{{PLANNER_CLASS_6}}</div>
-<div id="plannerClass7" class="planner-box plannerContent">{{PLANNER_CLASS_7}}</div>
-<div id="plannerClass8" class="planner-box plannerContent">{{PLANNER_CLASS_8}}</div>
-
-<div id="plannerClass9" class="planner-box plannerContent">
-{{PLANNER_CLASS_9:
-<b>Mathematics:</b> Polynomials Pg 28–39 | Ex 2.1 Q1–8 | Ex 2.2 Q4,6,7,9 | Revision MCQs<br><br>
-<b>Science:</b> Motion Pg 94–107 | Numericals Q1–10 | Derivations (3 equations)<br><br>
-<b>Social Science:</b> French Revolution Pg 5–18 | Q2,4,5 Pg 33 | Map work Pg 38<br><br>
-<b>English:</b> Beehive Ch 3 Pg 32–41 | Q1–5 | Grammar – Tenses | Diary Writing}}
-</div>
-</div>
-</section>
-
-<!-- ================= HOMEWORK ================= -->
-<section>
-<h2>📝 Homework</h2>
-<div class="date-tag">Date: {{HOMEWORK_DATE}}</div>
-
-<div class="homework-box">
-{
-<b>Class 1:</b> English – Alphabet A–F (15 min) | Maths – Counting 1–30 (15 min) | EVS – Body parts drawing (15 min)<br><br>
-<b>Class 2:</b> English – Reading L-4 (20 min) | Maths – Addition Ex 4.1 Q1–6 (20 min) | EVS – Uses of water (15 min)<br><br>
-<b>Class 3:</b> English – Paragraph writing (20 min) | Maths – Tables 3–8 (25 min) | EVS – Food we eat (20 min)<br><br>
-<b>Class 4:</b> English – Nouns Ex 3 (25 min) | Maths – Fractions Ex 6.3 (30 min) | Science – Matter (20 min)<br><br>
-<b>Class 5:</b> English – Informal letter Pg 52 (25 min) | Maths – Decimals Ex 7.2 (30 min) | Science – Digestive system (25 min)<br><br>
-<b>Class 6:</b> English – Vocabulary Pg 35 (25 min) | Maths – Integers Ex 6.3 (30 min) | Science – Sorting materials (25 min)<br><br>
-<b>Class 7:</b> English – Notice writing (25 min) | Maths – Algebra Ex 9.2 (30 min) | Science – Nutrition in plants (30 min)<br><br>
-<b>Class 8:</b> English – Active–Passive (30 min) | Maths – Linear equations Ex 2.4 (35 min) | Science – Force & Pressure (30 min)<br><br>
-<b>Class 9:</b> Maths – Polynomials Ex 2.2 (35 min) | Science – Motion derivations (30 min) | SST – French Revolution Q&A (40 min)}
-</div>
 </section>
 
 </body>
