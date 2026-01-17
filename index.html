@@ -37,7 +37,7 @@ section{
     padding:35px;
     border-radius:16px;
     box-shadow:0 6px 18px rgba(0,0,0,0.12);
-    max-width:840px;
+    max-width:900px;
 }
 h2{font-size:48px;color:#1e6fb8;}
 h3{font-size:42px;color:#2c7be5;}
@@ -67,23 +67,33 @@ select{
     padding:26px;
     font-size:40px;
     width:100%;
-    max-width:640px;
+    max-width:680px;
     margin:24px auto;
     border-radius:14px;
     border:3px solid #1e6fb8;
 }
-.content-box{
+.syllabus-box{
     border-left:8px solid #2ecc71;
+    background:#f1fbf5;
     padding:30px;
     display:none;
-    background:#f9fffb;
+}
+.planner-box{
+    border-left:8px solid #3498db;
+    background:#f2f8ff;
+    padding:30px;
+    display:none;
 }
 .homework-board{
     background:#fff8e1;
     border-left:8px solid #f39c12;
     padding:30px;
 }
-.date-tag{font-size:36px;}
+.date-tag{
+    font-size:36px;
+    color:#444;
+    margin-bottom:18px;
+}
 </style>
 
 <script>
@@ -98,9 +108,20 @@ function showClass(type){
     if(cls) document.getElementById(type+cls).style.display="block";
 }
 window.onload=function(){
-    const d=new Date();
+    const now=new Date();
+    const day=now.getDay();
+    const monday=new Date(now);
+    monday.setDate(now.getDate()-(day===0?6:day-1));
+    const saturday=new Date(monday);
+    saturday.setDate(monday.getDate()+5);
+    const opt={day:'numeric',month:'long',year:'numeric'};
+    document.querySelectorAll(".week-range")
+        .forEach(e=>e.innerText=
+            monday.toLocaleDateString("en-IN",opt)+" – "+
+            saturday.toLocaleDateString("en-IN",opt)
+        );
     document.querySelectorAll(".auto-date")
-    .forEach(e=>e.innerText=d.toLocaleDateString("en-IN",{day:'numeric',month:'long',year:'numeric'}));
+        .forEach(e=>e.innerText=now.toLocaleDateString("en-IN",opt));
 };
 </script>
 </head>
@@ -116,7 +137,7 @@ window.onload=function(){
 <section>
 <h2>📢 Notice Board</h2>
 <div class="notice-board">
-Students are advised to follow the daily work schedule regularly. Homework must be completed neatly and submitted on time. Parents are requested to monitor study duration at home.
+Students must strictly follow the weekly subject-wise plan. All classwork and homework must be completed as per the mentioned page numbers and exercises.
 </div>
 </section>
 
@@ -128,7 +149,7 @@ Students are advised to follow the daily work schedule regularly. Homework must 
 <button onclick="showSection('plannerSection')">✔ Weekly Planner</button>
 </div>
 
-<!-- CLASS 9 SYLLABUS -->
+<!-- SYLLABUS -->
 <div id="syllabusSection" style="display:none;">
 <h3>📚 Class 9 – Complete Syllabus</h3>
 
@@ -137,99 +158,70 @@ Students are advised to follow the daily work schedule regularly. Homework must 
 <option>Class9</option>
 </select>
 
-<div id="syllabusClass9" class="content-box syllabusContent">
-<b>Mathematics:</b><br>
-Number Systems, Polynomials, Coordinate Geometry, Linear Equations in Two Variables, Introduction to Euclid’s Geometry, Lines & Angles, Triangles, Circles, Heron’s Formula, Surface Areas & Volumes, Statistics<br><br>
-
-<b>Science:</b><br>
-Physics – Motion, Force & Laws of Motion, Gravitation, Work & Energy, Sound<br>
-Chemistry – Matter in Our Surroundings, Is Matter Around Us Pure, Atoms & Molecules, Structure of the Atom<br>
-Biology – Cell: Structure & Function, Tissues, Diversity in Living Organisms<br><br>
-
-<b>Social Science:</b><br>
-History – French Revolution, Socialism in Europe<br>
-Geography – Physical Features of India, Climate, Drainage<br>
-Civics – Democracy in the Contemporary World, Constitutional Design<br>
-Economics – The Story of Village Palampur, People as Resource<br><br>
-
-<b>English:</b><br>
-Beehive – Chapters 1 to 9<br>
-Moments – Chapters 1 to 6<br>
-Grammar – Tenses, Modals, Voice, Reported Speech, Writing Skills
+<div id="syllabusClass9" class="syllabus-box syllabusContent">
+<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry, Lines & Angles, Triangles, Circles, Statistics<br><br>
+<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Sound, Matter, Atoms & Molecules, Cell & Tissues<br><br>
+<b>Social Science:</b> French Revolution, Socialism in Europe, Physical Features of India, Climate, Democracy, Economics (Palampur)<br><br>
+<b>English:</b> Beehive Ch 1–9, Moments Ch 1–6, Grammar & Writing
 </div>
 </div>
 
-<!-- CLASS 9 DAILY SCHEDULE -->
+<!-- WEEKLY PLANNER -->
 <div id="plannerSection" style="display:none;">
-<h3>Weekly Work Schedule – Class 9</h3>
-<div class="date-tag">Week starting: <span class="auto-date"></span></div>
+<h3>Weekly Subject-wise Plan – Class 9</h3>
+<div class="date-tag">Week: <span class="week-range"></span></div>
 
 <select id="plannerClass" onchange="showClass('planner')">
 <option value="">Select Class</option>
 <option>Class9</option>
 </select>
 
-<div id="plannerClass9" class="content-box plannerContent">
-<b>Monday:</b> Maths – Polynomials (Ex 2.1) | English – Beehive Ch-3 | Science – Motion (Numericals)<br>
-<b>Tuesday:</b> Science – Gravitation | Maths – Linear Equations | SST – History (French Revolution)<br>
-<b>Wednesday:</b> English – Grammar (Tenses) | Maths – Practice Worksheet | Biology – Tissues<br>
-<b>Thursday:</b> Physics – Work & Energy | Civics – Democracy | English – Writing Skill<br>
-<b>Friday:</b> Chemistry – Atoms & Molecules | Maths – Statistics | Geography – Climate<br>
-<b>Saturday:</b> Weekly Test + Revision + Doubt Clearing
+<div id="plannerClass9" class="planner-box plannerContent">
+
+<b>Mathematics:</b><br>
+• Chapter 2 – Polynomials (NCERT Pg 28–39)<br>
+• Exercise 2.1 – Q. No. 1 to 8 (Classwork)<br>
+• Exercise 2.2 – Q. No. 4, 6, 7, 9 (Homework & discussion)<br>
+• Revision: Factorisation methods + 10 MCQs<br><br>
+
+<b>Science:</b><br>
+<b>Physics – Motion</b><br>
+• NCERT Pg 94–107 (full reading)<br>
+• Numericals: Q. No. 1 to 10 (Pg 100–101)<br>
+• Derivations: All three equations of motion (notebook)<br>
+• Revision test (10 marks)<br><br>
+
+<b>Social Science:</b><br>
+<b>History – The French Revolution</b><br>
+• NCERT Pg 5–18 (Causes & Estates General)<br>
+• Q. No. 2, 4, 5 (Pg 33) – written answers<br>
+• Map work: France political outline (Pg 38)<br><br>
+
+<b>English:</b><br>
+<b>Beehive – Chapter 3 “The Little Girl”</b><br>
+• Reading + explanation (Pg 32–41)<br>
+• Short answers: Q. No. 1 to 5<br>
+• Grammar: Tenses – Exercise Pg 112 (Q.1–6)<br>
+• Writing: Diary entry (100 words)
 </div>
 </div>
 </section>
 
-<!-- HOMEWORK ALL CLASSES -->
+<!-- HOMEWORK -->
 <section>
 <h2>📝 Homework (All Classes)</h2>
 <div class="homework-board">
 <b>Date:</b> <span class="auto-date"></span><br><br>
 
-<b>Class 1:</b><br>
-English – Alphabet A–F writing (2 pages) (15 min)<br>
-Maths – Counting 1–30 (write once) (15 min)<br>
-EVS – Parts of body (draw & label) (15 min)<br><br>
-
-<b>Class 2:</b><br>
-English – Reading Lesson 4, write 5 new words (20 min)<br>
-Maths – Addition Ex 4.1 Q1–6 (20 min)<br>
-EVS – Uses of water (5 lines) (15 min)<br><br>
-
-<b>Class 3:</b><br>
-English – Paragraph “My Best Friend” (10 lines) (20 min)<br>
-Maths – Tables 3–8 (write once) (25 min)<br>
-EVS – Food we eat Q1–4 (20 min)<br><br>
-
-<b>Class 4:</b><br>
-English – Nouns Ex 3 Q1–6 (25 min)<br>
-Maths – Fractions Ex 6.3 Q4–8 (30 min)<br>
-Science – Matter (short answers) (20 min)<br><br>
-
-<b>Class 5:</b><br>
-English – Informal letter Pg 52 (25 min)<br>
-Maths – Decimals Ex 7.2 Q5–10 (30 min)<br>
-Science – Digestive system (diagram + notes) (25 min)<br><br>
-
-<b>Class 6:</b><br>
-English – Vocabulary Pg 35 Q1–8 (25 min)<br>
-Maths – Integers Ex 6.3 Q6–12 (30 min)<br>
-Science – Sorting materials Q1–5 (25 min)<br><br>
-
-<b>Class 7:</b><br>
-English – Notice writing Pg 58 (25 min)<br>
-Maths – Algebra Ex 9.2 Q5–10 (30 min)<br>
-Science – Nutrition in plants (short answers) (30 min)<br><br>
-
-<b>Class 8:</b><br>
-English – Active–Passive Pg 64 (30 min)<br>
-Maths – Linear equations Ex 2.4 Q4–8 (35 min)<br>
-Science – Force & Pressure numericals (30 min)<br><br>
-
-<b>Class 9:</b><br>
-Maths – Polynomials Ex 2.2 Q4,6,7,9 (35 min)<br>
-Science – Motion: equations derivation + NCERT Pg 100 Q1–3 (30 min)<br>
-Social Science – French Revolution Q2,4,5 + map work (40 min)
+<b>Class 1:</b> English – Alphabet A–F (15 min) | Maths – Counting 1–30 (15 min) | EVS – Body parts drawing (15 min)<br><br>
+<b>Class 2:</b> English – Reading L-4 (20 min) | Maths – Addition Ex 4.1 Q1–6 (20 min) | EVS – Uses of water (15 min)<br><br>
+<b>Class 3:</b> English – Paragraph writing (20 min) | Maths – Tables 3–8 (25 min) | EVS – Food we eat (20 min)<br><br>
+<b>Class 4:</b> English – Nouns Ex 3 (25 min) | Maths – Fractions Ex 6.3 (30 min) | Science – Matter (20 min)<br><br>
+<b>Class 5:</b> English – Letter writing (25 min) | Maths – Decimals Ex 7.2 (30 min) | Science – Digestive system (25 min)<br><br>
+<b>Class 6:</b> English – Vocabulary Pg 35 (25 min) | Maths – Integers Ex 6.3 (30 min) | Science – Sorting materials (25 min)<br><br>
+<b>Class 7:</b> English – Notice writing (25 min) | Maths – Algebra Ex 9.2 (30 min) | Science – Nutrition in plants (30 min)<br><br>
+<b>Class 8:</b> English – Active–Passive (30 min) | Maths – Linear equations Ex 2.4 (35 min) | Science – Force & Pressure (30 min)<br><br>
+<b>Class 9:</b> Maths – Polynomials Ex 2.2 (35 min) | Science – Motion derivations (30 min) | SST – French Revolution Q&A (40 min)
 </div>
 </section>
 
