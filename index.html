@@ -110,19 +110,16 @@ select{
     padding:30px;
     display:none;
 }
-
 .planner-box{
     border-left:8px solid #3498db;
     background:#f2f8ff;
     padding:30px;
     display:none;
 }
-
 .homework-box{
     border-left:8px solid #f39c12;
     background:#fff8e1;
     padding:30px;
-    display:none;
 }
 
 .date-tag{
@@ -136,7 +133,6 @@ select{
 function showSection(id){
     syllabusSection.style.display="none";
     plannerSection.style.display="none";
-    homeworkSection.style.display="none";
     document.getElementById(id).style.display="block";
 }
 function showClass(type){
@@ -146,13 +142,6 @@ function showClass(type){
     if(cls) document.getElementById(type+cls).style.display="block";
 }
 function refreshPage(){ location.reload(); }
-
-window.onload=function(){
-    const now=new Date();
-    const opt={day:'numeric',month:'long',year:'numeric'};
-    document.querySelectorAll(".auto-date")
-        .forEach(e=>e.innerText=now.toLocaleDateString("en-IN",opt));
-};
 </script>
 
 </head>
@@ -177,7 +166,6 @@ window.onload=function(){
 <div class="directive-buttons">
 <button class="btn-syllabus" onclick="showSection('syllabusSection')">📚 Syllabus</button>
 <button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
-<button class="btn-planner" onclick="showSection('homeworkSection')">📝 Homework</button>
 </div>
 
 <!-- ================= SYLLABUS ================= -->
@@ -194,19 +182,22 @@ window.onload=function(){
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
+<div id="syllabusClass1" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_1}}</div>
+<div id="syllabusClass2" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_2}}</div>
+<div id="syllabusClass3" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_3}}</div>
+<div id="syllabusClass4" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_4}}</div>
+<div id="syllabusClass5" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_5}}</div>
+<div id="syllabusClass6" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_6}}</div>
+<div id="syllabusClass7" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_7}}</div>
+<div id="syllabusClass8" class="syllabus-box syllabusContent">{{SYLLABUS_CLASS_8}}</div>
+
 <div id="syllabusClass9" class="syllabus-box syllabusContent">
-{{SYLLABUS_CLASS_9}}
+{{SYLLABUS_CLASS_9:
+<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry, Lines & Angles, Triangles, Circles, Statistics<br><br>
+<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Sound, Matter, Atoms & Molecules, Cell – Structure & Function, Tissues<br><br>
+<b>Social Science:</b> French Revolution, Physical Features of India, Climate, Democracy, Economics – Village Palampur<br><br>
+<b>English:</b> Beehive Ch 1–9, Moments Ch 1–6, Grammar & Writing Skills}}
 </div>
-
-<div id="syllabusClass8" class="syllabus-box syllabusContent">
-{{SYLLABUS_CLASS_8}}
-</div>
-
-<div id="syllabusClass7" class="syllabus-box syllabusContent">
-{{SYLLABUS_CLASS_7}}
-</div>
-
-<!-- repeat same pattern for Class1–6 -->
 </div>
 
 <!-- ================= WEEKLY PLANNER ================= -->
@@ -224,70 +215,42 @@ window.onload=function(){
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
+<div id="plannerClass1" class="planner-box plannerContent">{{PLANNER_CLASS_1}}</div>
+<div id="plannerClass2" class="planner-box plannerContent">{{PLANNER_CLASS_2}}</div>
+<div id="plannerClass3" class="planner-box plannerContent">{{PLANNER_CLASS_3}}</div>
+<div id="plannerClass4" class="planner-box plannerContent">{{PLANNER_CLASS_4}}</div>
+<div id="plannerClass5" class="planner-box plannerContent">{{PLANNER_CLASS_5}}</div>
+<div id="plannerClass6" class="planner-box plannerContent">{{PLANNER_CLASS_6}}</div>
+<div id="plannerClass7" class="planner-box plannerContent">{{PLANNER_CLASS_7}}</div>
+<div id="plannerClass8" class="planner-box plannerContent">{{PLANNER_CLASS_8}}</div>
+
 <div id="plannerClass9" class="planner-box plannerContent">
-{{PLANNER_CLASS_9}}
+{{PLANNER_CLASS_9:
+<b>Mathematics:</b> Polynomials Pg 28–39 | Ex 2.1 Q1–8 | Ex 2.2 Q4,6,7,9 | Revision MCQs<br><br>
+<b>Science:</b> Motion Pg 94–107 | Numericals Q1–10 | Derivations (3 equations)<br><br>
+<b>Social Science:</b> French Revolution Pg 5–18 | Q2,4,5 Pg 33 | Map work Pg 38<br><br>
+<b>English:</b> Beehive Ch 3 Pg 32–41 | Q1–5 | Grammar – Tenses | Diary Writing}}
 </div>
-
-<div id="plannerClass8" class="planner-box plannerContent">
-{{PLANNER_CLASS_8}}
 </div>
-
-<!-- repeat same pattern for Class1–7 -->
-</div>
+</section>
 
 <!-- ================= HOMEWORK ================= -->
-<div id="homeworkSection" style="display:none;">
-<h3>📝 Homework</h3>
-<div class="date-tag">Date: <span class="auto-date"></span></div>
+<section>
+<h2>📝 Homework</h2>
+<div class="date-tag">Date: {{HOMEWORK_DATE}}</div>
 
-<div class="dropdown-row">
-<select id="homeworkClass" onchange="showClass('homework')">
-<option value="">Select Class</option>
-<option>Class1</option><option>Class2</option><option>Class3</option>
-<option>Class4</option><option>Class5</option><option>Class6</option>
-<option>Class7</option><option>Class8</option><option>Class9</option>
-</select>
-<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+<div class="homework-box">
+{{ALL_CLASS_HOMEWORK:
+<b>Class 1:</b> English – Alphabet A–F (15 min) | Maths – Counting 1–30 (15 min) | EVS – Body parts drawing (15 min)<br><br>
+<b>Class 2:</b> English – Reading L-4 (20 min) | Maths – Addition Ex 4.1 Q1–6 (20 min) | EVS – Uses of water (15 min)<br><br>
+<b>Class 3:</b> English – Paragraph writing (20 min) | Maths – Tables 3–8 (25 min) | EVS – Food we eat (20 min)<br><br>
+<b>Class 4:</b> English – Nouns Ex 3 (25 min) | Maths – Fractions Ex 6.3 (30 min) | Science – Matter (20 min)<br><br>
+<b>Class 5:</b> English – Informal letter Pg 52 (25 min) | Maths – Decimals Ex 7.2 (30 min) | Science – Digestive system (25 min)<br><br>
+<b>Class 6:</b> English – Vocabulary Pg 35 (25 min) | Maths – Integers Ex 6.3 (30 min) | Science – Sorting materials (25 min)<br><br>
+<b>Class 7:</b> English – Notice writing (25 min) | Maths – Algebra Ex 9.2 (30 min) | Science – Nutrition in plants (30 min)<br><br>
+<b>Class 8:</b> English – Active–Passive (30 min) | Maths – Linear equations Ex 2.4 (35 min) | Science – Force & Pressure (30 min)<br><br>
+<b>Class 9:</b> Maths – Polynomials Ex 2.2 (35 min) | Science – Motion derivations (30 min) | SST – French Revolution Q&A (40 min)}}
 </div>
-
-<div id="homeworkClass1" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_1}}
-</div>
-
-<div id="homeworkClass2" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_2}}
-</div>
-
-<div id="homeworkClass3" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_3}}
-</div>
-
-<div id="homeworkClass4" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_4}}
-</div>
-
-<div id="homeworkClass5" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_5}}
-</div>
-
-<div id="homeworkClass6" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_6}}
-</div>
-
-<div id="homeworkClass7" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_7}}
-</div>
-
-<div id="homeworkClass8" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_8}}
-</div>
-
-<div id="homeworkClass9" class="homework-box homeworkContent">
-{{HOMEWORK_CLASS_9}}
-</div>
-
-</div>
-
 </section>
 
 </body>
