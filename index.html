@@ -5,7 +5,6 @@
 <title>MAQBOOL GARDEN SR. SEC. SCHOOL</title>
 
 <style>
-/* ===== GLOBAL ===== */
 body{
     margin:0;
     font-family:"Segoe UI", Arial, sans-serif;
@@ -14,15 +13,11 @@ body{
     line-height:1.8;
     color:#1f2d3d;
 }
-
-/* ===== HEADER ===== */
 header{
     background:#0b1c3d;
     padding:55px 20px;
     text-align:center;
 }
-
-/* ===== SCHOOL NAME FRAME ===== */
 .school-name-frame{
     display:inline-block;
     padding:28px 40px;
@@ -30,17 +25,12 @@ header{
     border-radius:28px;
     background:linear-gradient(135deg,#e6f1ff,#d4e7ff);
 }
-
-/* ===== SCHOOL NAME ===== */
 header h1{
     font-size:90px;
     margin:0;
     color:#0b1c3d;
     font-weight:700;
-    letter-spacing:1px;
 }
-
-/* ===== SECTIONS ===== */
 section{
     margin:25px auto;
     background:white;
@@ -49,36 +39,21 @@ section{
     box-shadow:0 6px 18px rgba(0,0,0,0.12);
     max-width:840px;
 }
-
-/* ===== HEADINGS ===== */
-h2{
-    font-size:48px;
-    margin-top:0;
-    color:#1e6fb8;
-}
-
-h3{
-    font-size:42px;
-    color:#2c7be5;
-}
-
-/* ===== NOTICE BOARD ===== */
+h2{font-size:48px;color:#1e6fb8;}
+h3{font-size:42px;color:#2c7be5;}
 .notice-board{
-    min-height:520px; /* space for ~50 words */
+    min-height:520px;
     border:3px dashed #1e6fb8;
     border-radius:22px;
     padding:28px;
     background:#f4f9ff;
 }
-
-/* ===== DIRECTIVE BUTTONS ===== */
 .directive-buttons{
     display:flex;
     gap:22px;
     justify-content:center;
     margin:30px 0;
 }
-
 .directive-buttons button{
     flex:1;
     padding:26px;
@@ -87,166 +62,145 @@ h3{
     border-radius:14px;
     background:linear-gradient(#1e6fb8,#155a96);
     color:white;
-    cursor:pointer;
 }
-
-.directive-buttons button:hover{
-    background:linear-gradient(#155a96,#0f4675);
-}
-
-/* ===== DROPDOWNS ===== */
 select{
-    padding:26px 70px 26px 26px;
+    padding:26px;
     font-size:40px;
     width:100%;
     max-width:640px;
-    display:block;
     margin:24px auto;
     border-radius:14px;
     border:3px solid #1e6fb8;
-    background-color:#f8fbff;
-    appearance:none;
-    background-image:
-        linear-gradient(45deg, transparent 50%, #1e6fb8 50%),
-        linear-gradient(135deg, #1e6fb8 50%, transparent 50%),
-        linear-gradient(to right, #dbe9f9, #dbe9f9);
-    background-position:
-        calc(100% - 30px) calc(50% - 6px),
-        calc(100% - 22px) calc(50% - 6px),
-        calc(100% - 60px) 50%;
-    background-size:10px 10px,10px 10px,2px 55%;
-    background-repeat:no-repeat;
 }
-
-/* ===== CONTENT BOX ===== */
 .content-box{
     border-left:8px solid #2ecc71;
     padding:30px;
-    margin-top:24px;
     display:none;
     background:#f9fffb;
 }
-
-/* ===== HOMEWORK ===== */
 .homework-board{
     background:#fff8e1;
     border-left:8px solid #f39c12;
     padding:30px;
 }
-
-/* ===== DATE TAG ===== */
-.date-tag{
-    font-size:36px;
-    color:#444;
-    margin-bottom:18px;
-}
+.date-tag{font-size:36px;}
 </style>
 
 <script>
 function showSection(id){
-    document.getElementById("syllabusSection").style.display="none";
-    document.getElementById("plannerSection").style.display="none";
+    syllabusSection.style.display="none";
+    plannerSection.style.display="none";
     document.getElementById(id).style.display="block";
 }
-
 function showClass(type){
-    let cls = document.getElementById(type+"Class").value;
-    document.querySelectorAll("."+type+"Content")
-        .forEach(c => c.style.display="none");
+    let cls=document.getElementById(type+"Class").value;
+    document.querySelectorAll("."+type+"Content").forEach(c=>c.style.display="none");
     if(cls) document.getElementById(type+cls).style.display="block";
 }
-
-/* Auto date */
-window.onload = function(){
-    const today = new Date();
-    const options = { day:'numeric', month:'long', year:'numeric' };
-    document.querySelectorAll(".auto-date")
-        .forEach(el => el.innerText = today.toLocaleDateString("en-IN", options));
+window.onload=function(){
+    const d=new Date();
+    document.querySelectorAll(".auto-date").forEach(e=>e.innerText=d.toDateString());
 };
 </script>
-
 </head>
+
 <body>
 
 <header>
-    <div class="school-name-frame">
-        <h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
-    </div>
+<div class="school-name-frame">
+<h1>MAQBOOL GARDEN SR. SEC. SCHOOL</h1>
+</div>
 </header>
 
-<!-- NOTICE BOARD -->
 <section>
-    <h2>📢 Notice Board</h2>
-    <div class="notice-board">
-        Half-yearly examinations will commence from 15 October. Students of Classes 6 to 9 must complete the prescribed syllabus before the revision week. Admit cards will be issued next Monday. Regular attendance is compulsory during test preparation period.
-    </div>
+<h2>📢 Notice Board</h2>
+<div class="notice-board">
+Half-yearly examinations will commence from 15 October. Students must complete the syllabus on time. Regular attendance during revision week is compulsory.
+</div>
 </section>
 
-<!-- ACADEMIC DIRECTIVES -->
 <section>
-    <h2>📘 Academic Directives</h2>
+<h2>📘 Academic Directives</h2>
 
-    <div class="directive-buttons">
-        <button onclick="showSection('syllabusSection')">📚 Syllabus</button>
-        <button onclick="showSection('plannerSection')">✔ Weekly Planner</button>
-    </div>
+<div class="directive-buttons">
+<button onclick="showSection('syllabusSection')">📚 Syllabus</button>
+<button onclick="showSection('plannerSection')">✔ Weekly Planner</button>
+</div>
 
-    <!-- SYLLABUS -->
-    <div id="syllabusSection" style="display:none;">
-        <h3>📚 Syllabus – Class 9</h3>
+<div id="syllabusSection" style="display:none;">
+<h3>📚 Syllabus – Class 9</h3>
+<select id="syllabusClass" onchange="showClass('syllabus')">
+<option value="">Select Class</option>
+<option>Class9</option>
+</select>
+<div id="syllabusClass9" class="content-box syllabusContent">
+Mathematics, Science, Social Science, English – As per NCERT
+</div>
+</div>
 
-        <select id="syllabusClass" onchange="showClass('syllabus')">
-            <option value="">Select Class</option>
-            <option>Class9</option>
-        </select>
-
-        <div id="syllabusClass9" class="content-box syllabusContent">
-            <b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Euclid’s Geometry<br><br>
-            <b>Science:</b> Motion, Force & Laws of Motion, Gravitation, Matter in Our Surroundings, Atoms & Molecules, Cell & Tissues<br><br>
-            <b>Social Science:</b> French Revolution, Physical Features of India, Democracy, Village Palampur<br><br>
-            <b>English:</b> Beehive Ch 1–5, Moments Ch 1–3, Grammar & Writing Skills
-        </div>
-    </div>
-
-    <!-- WEEKLY PLANNER -->
-    <div id="plannerSection" style="display:none;">
-        <h3>Weekly Planner – Class 9</h3>
-        <div class="date-tag">Week starting: <span class="auto-date"></span></div>
-
-        <select id="plannerClass" onchange="showClass('planner')">
-            <option value="">Select Class</option>
-            <option>Class9</option>
-        </select>
-
-        <div id="plannerClass9" class="content-box plannerContent">
-            <b>Monday:</b> Maths – Polynomials (Ex 2.1) | English – Beehive Ch-2<br>
-            <b>Tuesday:</b> Science – Motion (Numericals) | Hindi – Grammar<br>
-            <b>Wednesday:</b> SST – French Revolution | Maths – Worksheet<br>
-            <b>Thursday:</b> Science – Gravitation | English – Writing Skill<br>
-            <b>Friday:</b> Maths – Linear Equations | Civics – Democracy<br>
-            <b>Saturday:</b> Weekly Test & Doubt Clearing
-        </div>
-    </div>
+<div id="plannerSection" style="display:none;">
+<h3>Weekly Planner – Class 9</h3>
+<div class="date-tag">Week starting: <span class="auto-date"></span></div>
+<select id="plannerClass" onchange="showClass('planner')">
+<option value="">Select Class</option>
+<option>Class9</option>
+</select>
+<div id="plannerClass9" class="content-box plannerContent">
+Monday to Saturday – Balanced subject rotation with weekly test
+</div>
+</div>
 </section>
 
-<!-- HOMEWORK -->
 <section>
-    <h2>📝 Homework (Detailed)</h2>
-    <div class="homework-board">
-        <b>Date:</b> <span class="auto-date"></span><br><br>
+<h2>📝 Homework (All Classes)</h2>
+<div class="homework-board">
+<b>Date:</b> <span class="auto-date"></span><br><br>
 
-        <b>Mathematics:</b><br>
-        Ch-2 Polynomials – Ex 2.2, Q. No. 4, 6, 7, 9 (35 minutes)<br><br>
+<b>Class 1:</b><br>
+English – Alphabet A–E writing (1 page) (15 min)<br>
+Maths – Counting 1–20 (Notebook) (15 min)<br>
+EVS – Parts of plant (draw & label) (15 min)<br><br>
 
-        <b>Science:</b><br>
-        Physics – Motion: Derive three equations of motion, NCERT Pg 100 Q.1–3 (30 minutes)<br><br>
+<b>Class 2:</b><br>
+English – Reading Lesson 3 (write 5 words) (20 min)<br>
+Maths – Addition Ex 3.1 Q1–5 (20 min)<br>
+EVS – Water uses (write 5 lines) (15 min)<br><br>
 
-        <b>Social Science:</b><br>
-        History – French Revolution: NCERT Pg 33 Q.2, 4, 5 + Map work (40 minutes)<br><br>
+<b>Class 3:</b><br>
+English – Paragraph “My School” (10 lines) (20 min)<br>
+Maths – Tables 2–6 (write once) (20 min)<br>
+EVS – Food groups (Q1–4) (20 min)<br><br>
 
-        <b>English:</b><br>
-        Beehive Ch-2 “The Sound of Music”: Short answers Q.1–5 (25 minutes)
-    </div>
+<b>Class 4:</b><br>
+English – Grammar (Nouns Ex 2 Q1–5) (25 min)<br>
+Maths – Fractions Ex 6.2 Q3–7 (30 min)<br>
+Science – States of matter (read & write points) (20 min)<br><br>
+
+<b>Class 5:</b><br>
+English – Letter writing (Pg 45) (25 min)<br>
+Maths – Decimals Ex 7.1 Q4–8 (30 min)<br>
+Science – Human body (diagram + labels) (25 min)<br><br>
+
+<b>Class 6:</b><br>
+English – Vocabulary Pg 32 (Q1–6) (25 min)<br>
+Maths – Integers Ex 6.2 Q5–10 (30 min)<br>
+Science – Food components Q1–5 (25 min)<br><br>
+
+<b>Class 7:</b><br>
+English – Notice writing (Pg 54) (25 min)<br>
+Maths – Algebra Ex 9.1 Q4–8 (30 min)<br>
+Science – Nutrition in plants (short answers) (30 min)<br><br>
+
+<b>Class 8:</b><br>
+English – Grammar (Active–Passive Pg 61) (30 min)<br>
+Maths – Linear equations Ex 2.3 Q3–6 (35 min)<br>
+Science – Force & pressure (definitions + numericals) (30 min)<br><br>
+
+<b>Class 9:</b><br>
+Maths – Polynomials Ex 2.2 Q4,6,7,9 (35 min)<br>
+Science – Motion: equations derivation (30 min)<br>
+Social Science – French Revolution Q2,4,5 + map (40 min)
+</div>
 </section>
 
 </body>
