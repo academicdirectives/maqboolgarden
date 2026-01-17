@@ -99,7 +99,8 @@ function showClass(type){
 }
 window.onload=function(){
     const d=new Date();
-    document.querySelectorAll(".auto-date").forEach(e=>e.innerText=d.toDateString());
+    document.querySelectorAll(".auto-date")
+    .forEach(e=>e.innerText=d.toLocaleDateString("en-IN",{day:'numeric',month:'long',year:'numeric'}));
 };
 </script>
 </head>
@@ -115,7 +116,7 @@ window.onload=function(){
 <section>
 <h2>📢 Notice Board</h2>
 <div class="notice-board">
-Half-yearly examinations will commence from 15 October. Students must complete the syllabus on time. Regular attendance during revision week is compulsory.
+Students are advised to follow the daily work schedule regularly. Homework must be completed neatly and submitted on time. Parents are requested to monitor study duration at home.
 </div>
 </section>
 
@@ -127,79 +128,108 @@ Half-yearly examinations will commence from 15 October. Students must complete t
 <button onclick="showSection('plannerSection')">✔ Weekly Planner</button>
 </div>
 
+<!-- CLASS 9 SYLLABUS -->
 <div id="syllabusSection" style="display:none;">
-<h3>📚 Syllabus – Class 9</h3>
+<h3>📚 Class 9 – Complete Syllabus</h3>
+
 <select id="syllabusClass" onchange="showClass('syllabus')">
 <option value="">Select Class</option>
 <option>Class9</option>
 </select>
+
 <div id="syllabusClass9" class="content-box syllabusContent">
-Mathematics, Science, Social Science, English – As per NCERT
+<b>Mathematics:</b><br>
+Number Systems, Polynomials, Coordinate Geometry, Linear Equations in Two Variables, Introduction to Euclid’s Geometry, Lines & Angles, Triangles, Circles, Heron’s Formula, Surface Areas & Volumes, Statistics<br><br>
+
+<b>Science:</b><br>
+Physics – Motion, Force & Laws of Motion, Gravitation, Work & Energy, Sound<br>
+Chemistry – Matter in Our Surroundings, Is Matter Around Us Pure, Atoms & Molecules, Structure of the Atom<br>
+Biology – Cell: Structure & Function, Tissues, Diversity in Living Organisms<br><br>
+
+<b>Social Science:</b><br>
+History – French Revolution, Socialism in Europe<br>
+Geography – Physical Features of India, Climate, Drainage<br>
+Civics – Democracy in the Contemporary World, Constitutional Design<br>
+Economics – The Story of Village Palampur, People as Resource<br><br>
+
+<b>English:</b><br>
+Beehive – Chapters 1 to 9<br>
+Moments – Chapters 1 to 6<br>
+Grammar – Tenses, Modals, Voice, Reported Speech, Writing Skills
 </div>
 </div>
 
+<!-- CLASS 9 DAILY SCHEDULE -->
 <div id="plannerSection" style="display:none;">
-<h3>Weekly Planner – Class 9</h3>
+<h3>Weekly Work Schedule – Class 9</h3>
 <div class="date-tag">Week starting: <span class="auto-date"></span></div>
+
 <select id="plannerClass" onchange="showClass('planner')">
 <option value="">Select Class</option>
 <option>Class9</option>
 </select>
+
 <div id="plannerClass9" class="content-box plannerContent">
-Monday to Saturday – Balanced subject rotation with weekly test
+<b>Monday:</b> Maths – Polynomials (Ex 2.1) | English – Beehive Ch-3 | Science – Motion (Numericals)<br>
+<b>Tuesday:</b> Science – Gravitation | Maths – Linear Equations | SST – History (French Revolution)<br>
+<b>Wednesday:</b> English – Grammar (Tenses) | Maths – Practice Worksheet | Biology – Tissues<br>
+<b>Thursday:</b> Physics – Work & Energy | Civics – Democracy | English – Writing Skill<br>
+<b>Friday:</b> Chemistry – Atoms & Molecules | Maths – Statistics | Geography – Climate<br>
+<b>Saturday:</b> Weekly Test + Revision + Doubt Clearing
 </div>
 </div>
 </section>
 
+<!-- HOMEWORK ALL CLASSES -->
 <section>
 <h2>📝 Homework (All Classes)</h2>
 <div class="homework-board">
 <b>Date:</b> <span class="auto-date"></span><br><br>
 
 <b>Class 1:</b><br>
-English – Alphabet A–E writing (1 page) (15 min)<br>
-Maths – Counting 1–20 (Notebook) (15 min)<br>
-EVS – Parts of plant (draw & label) (15 min)<br><br>
+English – Alphabet A–F writing (2 pages) (15 min)<br>
+Maths – Counting 1–30 (write once) (15 min)<br>
+EVS – Parts of body (draw & label) (15 min)<br><br>
 
 <b>Class 2:</b><br>
-English – Reading Lesson 3 (write 5 words) (20 min)<br>
-Maths – Addition Ex 3.1 Q1–5 (20 min)<br>
-EVS – Water uses (write 5 lines) (15 min)<br><br>
+English – Reading Lesson 4, write 5 new words (20 min)<br>
+Maths – Addition Ex 4.1 Q1–6 (20 min)<br>
+EVS – Uses of water (5 lines) (15 min)<br><br>
 
 <b>Class 3:</b><br>
-English – Paragraph “My School” (10 lines) (20 min)<br>
-Maths – Tables 2–6 (write once) (20 min)<br>
-EVS – Food groups (Q1–4) (20 min)<br><br>
+English – Paragraph “My Best Friend” (10 lines) (20 min)<br>
+Maths – Tables 3–8 (write once) (25 min)<br>
+EVS – Food we eat Q1–4 (20 min)<br><br>
 
 <b>Class 4:</b><br>
-English – Grammar (Nouns Ex 2 Q1–5) (25 min)<br>
-Maths – Fractions Ex 6.2 Q3–7 (30 min)<br>
-Science – States of matter (read & write points) (20 min)<br><br>
+English – Nouns Ex 3 Q1–6 (25 min)<br>
+Maths – Fractions Ex 6.3 Q4–8 (30 min)<br>
+Science – Matter (short answers) (20 min)<br><br>
 
 <b>Class 5:</b><br>
-English – Letter writing (Pg 45) (25 min)<br>
-Maths – Decimals Ex 7.1 Q4–8 (30 min)<br>
-Science – Human body (diagram + labels) (25 min)<br><br>
+English – Informal letter Pg 52 (25 min)<br>
+Maths – Decimals Ex 7.2 Q5–10 (30 min)<br>
+Science – Digestive system (diagram + notes) (25 min)<br><br>
 
 <b>Class 6:</b><br>
-English – Vocabulary Pg 32 (Q1–6) (25 min)<br>
-Maths – Integers Ex 6.2 Q5–10 (30 min)<br>
-Science – Food components Q1–5 (25 min)<br><br>
+English – Vocabulary Pg 35 Q1–8 (25 min)<br>
+Maths – Integers Ex 6.3 Q6–12 (30 min)<br>
+Science – Sorting materials Q1–5 (25 min)<br><br>
 
 <b>Class 7:</b><br>
-English – Notice writing (Pg 54) (25 min)<br>
-Maths – Algebra Ex 9.1 Q4–8 (30 min)<br>
+English – Notice writing Pg 58 (25 min)<br>
+Maths – Algebra Ex 9.2 Q5–10 (30 min)<br>
 Science – Nutrition in plants (short answers) (30 min)<br><br>
 
 <b>Class 8:</b><br>
-English – Grammar (Active–Passive Pg 61) (30 min)<br>
-Maths – Linear equations Ex 2.3 Q3–6 (35 min)<br>
-Science – Force & pressure (definitions + numericals) (30 min)<br><br>
+English – Active–Passive Pg 64 (30 min)<br>
+Maths – Linear equations Ex 2.4 Q4–8 (35 min)<br>
+Science – Force & Pressure numericals (30 min)<br><br>
 
 <b>Class 9:</b><br>
 Maths – Polynomials Ex 2.2 Q4,6,7,9 (35 min)<br>
-Science – Motion: equations derivation (30 min)<br>
-Social Science – French Revolution Q2,4,5 + map (40 min)
+Science – Motion: equations derivation + NCERT Pg 100 Q1–3 (30 min)<br>
+Social Science – French Revolution Q2,4,5 + map work (40 min)
 </div>
 </section>
 
