@@ -180,7 +180,6 @@ Half-yearly examinations will begin next month. Students must complete syllabus 
 <button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
 </div>
 
-<!-- ================= SYLLABUS ================= -->
 <div id="syllabusSection" style="display:none;">
 <h3>📚 Syllabus</h3>
 
@@ -204,42 +203,54 @@ Half-yearly examinations will begin next month. Students must complete syllabus 
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
-<div id="syllabusNursery" class="syllabus-box syllabusContent">
+<div id="syllabusNursery" class="syllabus-box syllabusContent">{blank}</div>
+
+<div id="syllabusLKG" class="syllabus-box syllabusContent">
 <b>Sub – English</b><br>
-Capital letter A–Z (written form)<br>
-Small letter a–z (written form)<br>
-Phonic Drill A–Z (Repeat)<br>
-Word Formation A–J<br>
-Matching capital letters with small letters<br>
-Missing letter (a to z) in small letter<br>
-Activity<br><br>
-
-<b>Sub – Maths</b><br>
-Numbers 51 to 100<br>
-Count and Write<br>
-Number Names 11 to 20<br>
-Before, After, Between<br>
-Missing Number<br>
-Match the Number with their Names<br>
-Pg no. 93, 94, 95<br>
-Pg no. 100, 101, 102<br><br>
-
-<b>Sub – Rhymes</b><br>
-Early to Bed – Pg 4 (Repeat)<br>
-Jingle Bells – Pg 6<br>
-Rain Rain Go Away – Pg 7 (Repeat)<br>
-Good Night Night, Sleep Tight – Pg 12<br>
-Twinkle, Twinkle Little Star – Pg 13<br>
-हाथी – Pg 20<br>
-मोर – Pg 21 OR मछली – Pg 23<br>
-चंदा मामा – Pg 24<br><br>
+Word Formation U to Z (follow copy)<br>
+Use of ‘A’ and ‘An’ – Pg 44 &amp; 45<br>
+Use of ‘And’ – Pg 46 &amp; 47<br>
+One and Many – Pg 48 &amp; 49<br>
+Use of ‘this’ &amp; ‘that’ – Pg 51 &amp; 52<br>
+Use of ‘Yes’ and ‘No’ – Pg 57<br>
+Use of ‘He’ and ‘She’ – Pg 61<br>
+Use of ‘is’ and ‘are’ – Pg 55<br>
+Opposites (oral) – Pg 65<br>
+Colours (oral) – Pg 62<br>
+Project<br><br>
 
 <b>Sub – Conversation</b><br>
-Q 1 to 10 (Follow copy)<br>
-Study material (Repeat)
+Pg – 15 (Q1 to Q4)<br>
+Pg – 16 (Q1 to Q4)<br>
+Pg – 17 (Q1 to Q5)<br>
+Pg – 20 (Q1 and Q2)<br>
+Pg – 21 (Q1 and Q2)<br>
+Pg – 22 (Q1 and Q2)<br>
+Pg – 24 (Q1 and Q2)<br>
+Pg – 23 (Opposites)<br>
+Pg – 7 (Repeat)<br><br>
+
+<b>Sub – Maths</b><br>
+Number Names 71 to 100 (Written form)<br>
+Count and write number<br>
+Put the symbol ‘&gt;’ or ‘=’<br>
+Addition (Repeat)<br>
+Subtraction (Repeat)<br>
+Missing Numbers (51 to 100)<br>
+Numbers (51 to 100) – Repeat<br>
+Match the numbers with names (1–40)<br><br>
+
+<b>Sub – Rhymes</b><br>
+The Clock – Pg 4<br>
+Butterfly, Butterfly, Flutter Around – Pg 6<br>
+Five Little Soldiers – Pg 9<br>
+Prayer – Pg 11<br>
+Lolly Pop – Pg 13<br>
+उड़ी पतंग – Pg 18<br>
+छतरी – Pg 20 <b>OR</b> तिरंगा – Pg 21<br>
+दोस्त – Pg 22
 </div>
 
-<div id="syllabusLKG" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusUKG" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassI" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassII" class="syllabus-box syllabusContent">{blank}</div>
@@ -249,79 +260,9 @@ Study material (Repeat)
 <div id="syllabusClassVI" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassVII" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassVIII" class="syllabus-box syllabusContent">{blank}</div>
-
-<div id="syllabusClassIX" class="syllabus-box syllabusContent">
-<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Geometry, Statistics<br><br>
-<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Matter, Cell, Tissues<br><br>
-<b>Social Science:</b> French Revolution, Geography of India, Democracy, Economics<br><br>
-<b>English:</b> Beehive, Moments, Grammar & Writing
-</div>
-
+<div id="syllabusClassIX" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassX" class="syllabus-box syllabusContent">{blank}</div>
-</div>
 
-<!-- ================= WEEKLY PLANNER ================= -->
-<div id="plannerSection" style="display:none;">
-<h3>Weekly Planner</h3>
-<div class="date-tag">Week: <span class="week-range"></span></div>
-
-<div class="dropdown-row">
-<select id="plannerClass" onchange="showClass('planner')">
-<option value="">Select Class</option>
-<option>Nursery</option>
-<option>LKG</option>
-<option>UKG</option>
-<option>Class I</option>
-<option>Class II</option>
-<option>Class III</option>
-<option>Class IV</option>
-<option>Class V</option>
-<option>Class VI</option>
-<option>Class VII</option>
-<option>Class VIII</option>
-<option>Class IX</option>
-<option>Class X</option>
-</select>
-<button class="refresh-btn" onclick="refreshPage()">🔄</button>
-</div>
-
-<div id="plannerNursery" class="planner-box plannerContent">{blank}</div>
-<div id="plannerLKG" class="planner-box plannerContent">{blank}</div>
-<div id="plannerUKG" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassI" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassII" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassIII" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassIV" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassV" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassVI" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassVII" class="planner-box plannerContent">{blank}</div>
-<div id="plannerClassVIII" class="planner-box plannerContent">{blank}</div>
-
-<div id="plannerClassIX" class="planner-box plannerContent">
-<b>Maths:</b> Polynomials Ex 2.1–2.2 (Pg 28–39)<br>
-<b>Science:</b> Motion numericals & derivations<br>
-<b>SST:</b> French Revolution Pg 5–18 + map<br>
-<b>English:</b> Beehive Ch 3 + Grammar
-</div>
-
-<div id="plannerClassX" class="planner-box plannerContent">{blank}</div>
-</div>
-</section>
-
-<section>
-<h2>📝 Homework</h2>
-<div class="date-tag">Date: <span class="auto-date"></span></div>
-
-<div class="homework-box">
-<b>Class I:</b> Alphabet A–F, counting 1–30, body parts drawing<br><br>
-<b>Class II:</b> Reading lesson 4, addition Ex 4.1, EVS notes<br><br>
-<b>Class III:</b> Paragraph writing, tables 3–8, EVS Q&A<br><br>
-<b>Class IV:</b> Nouns exercise, fractions Ex 6.3, science answers<br><br>
-<b>Class V:</b> Informal letter, decimals Ex 7.2, diagram work<br><br>
-<b>Class VI:</b> Vocabulary, integers Ex 6.3, science worksheet<br><br>
-<b>Class VII:</b> Notice writing, algebra Ex 9.2, nutrition notes<br><br>
-<b>Class VIII:</b> Active-Passive, linear equations Ex 2.4, numericals<br><br>
-<b>Class IX:</b> Polynomials Ex 2.2, motion derivations, SST Q&A
 </div>
 </section>
 
