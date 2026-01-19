@@ -125,23 +125,25 @@ select{
 
 <script>
 function showSection(id){
-    syllabusSection.style.display="none";
-    plannerSection.style.display="none";
+    document.getElementById("syllabusSection").style.display="none";
+    document.getElementById("plannerSection").style.display="none";
     document.getElementById(id).style.display="block";
 }
+
 function showClass(type){
     let cls=document.getElementById(type+"Class").value;
     document.querySelectorAll("."+type+"Content")
-      .forEach(c=>c.style.display="none");
+        .forEach(c=>c.style.display="none");
     if(cls) document.getElementById(type+cls).style.display="block";
 }
+
 function refreshPage(){ location.reload(); }
 
 window.onload=function(){
     const today=new Date();
     const opt={day:'numeric',month:'long',year:'numeric'};
     document.querySelectorAll(".auto-date")
-      .forEach(e=>e.innerText=today.toLocaleDateString("en-IN",opt));
+        .forEach(e=>e.innerText=today.toLocaleDateString("en-IN",opt));
 
     const day=today.getDay();
     const monday=new Date(today);
@@ -150,9 +152,9 @@ window.onload=function(){
     saturday.setDate(monday.getDate()+5);
 
     document.querySelectorAll(".week-range")
-      .forEach(e=>e.innerText=
-        monday.toLocaleDateString("en-IN",opt)+" – "+
-        saturday.toLocaleDateString("en-IN",opt));
+        .forEach(e=>e.innerText=
+            monday.toLocaleDateString("en-IN",opt)+" – "+
+            saturday.toLocaleDateString("en-IN",opt));
 };
 </script>
 </head>
@@ -207,142 +209,35 @@ Parents are requested to monitor daily homework and attendance regularly.
 
 <!-- NURSERY -->
 <div id="syllabusNursery" class="syllabus-box syllabusContent">
-<b>Sub – English</b><br>
-Capital letter A–Z (written form)<br>
-Small letter a–z (written form)<br>
-Phonic Drill A–Z (Repeat)<br>
-Word Formation A–J<br>
-Matching capital letters with small letters<br>
-Missing letter (a to z) in small letter<br>
-Activity<br><br>
-
-<b>Sub – Maths</b><br>
-Numbers 51 to 100<br>
-Count and Write<br>
-Number Names 11 to 20<br>
-Before, After, Between<br>
-Missing Number<br>
-Match the Number with their Names<br>
-Pg 93–95, 100–102<br><br>
-
-<b>Sub – Rhymes</b><br>
-Early to Bed – Pg 4 (Repeat)<br>
-Jingle Bells – Pg 6<br>
-Rain Rain Go Away – Pg 7 (Repeat)<br>
-Good Night Night, Sleep Tight – Pg 12<br>
-Twinkle Twinkle Little Star – Pg 13<br>
-हाथी – Pg 20<br>
-मोर – Pg 21 OR मछली – Pg 23<br>
-चंदा मामा – Pg 24<br><br>
-
-<b>Sub – Conversation</b><br>
-Q1 to Q10 (Follow copy)<br>
-Study material (Repeat)
+<b>English:</b> Capital A–Z, small a–z, phonics, word formation A–J<br>
+<b>Maths:</b> 51–100, number names 11–20, before/after, missing numbers<br>
+<b>Rhymes:</b> Early to Bed, Jingle Bells, Rain Rain, Twinkle Twinkle, हाथी, मोर/मछली, चंदा मामा<br>
+<b>Conversation:</b> Q1–10
 </div>
 
 <!-- LKG -->
 <div id="syllabusLKG" class="syllabus-box syllabusContent">
-<b>English</b><br>
-Word Formation U–Z, Use of A/An, And, This/That, He/She, Is/Are, Opposites, Colours, Project<br><br>
-<b>Conversation</b><br>
-Pg 15–24 (as instructed)<br><br>
-<b>Maths</b><br>
-Number Names 71–100, Addition, Subtraction, Symbols, Missing Numbers<br><br>
-<b>Rhymes</b><br>
-Clock, Butterfly, Soldiers, Prayer, Lolly Pop, उड़ी पतंग, छतरी / तिरंगा, दोस्त
+English grammar, conversation pages, maths 71–100, rhymes list (as uploaded)
 </div>
 
 <!-- UKG -->
 <div id="syllabusUKG" class="syllabus-box syllabusContent">
-<b>English</b><br>
-A–Z words, grammar, reading, project<br><br>
-<b>Rhymes</b><br>
-One Two Buckle My Shoe, Baa Baa Black Sheep, etc.<br><br>
-<b>Conversation</b><br>
-Pg 21–40 (as provided)<br><br>
-<b>Bengali</b><br>
-স্বরবর্ণ, ব্যঞ্জনবর্ণ, শব্দ, ছড়া<br><br>
-<b>Maths</b><br>
-Number names 81–100, addition, subtraction, multiplication, time, calendar
+English A–Z words, rhymes with action, Bengali, maths 81–100, time & calendar
 </div>
 
 <!-- CLASS I -->
 <div id="syllabusClassI" class="syllabus-box syllabusContent">
-<b>English</b><br>
-Chapter 2,6,7,9,10<br>
-Poem “Little Things” – Pg 90<br>
-Dictation, Project<br><br>
-
-<b>Maths</b><br>
-Ch 7 Multiplication, Ch 8 Time, Ch 9 Money, Ch 10 Measurement, Ch 11 Shapes<br><br>
-
-<b>Hindi</b><br>
-Chapter 11,12,14,20,21,24,28 (Oral)<br>
-कविता – छुटकी चिड़िया OR सब्जीवाला, गुलाब ने कहा (Pg 80)<br><br>
-
-<b>EVS</b><br>
-Chapter 1,2,11,12,13<br><br>
-
-<b>Bengali</b><br>
-Chapter 13–17, Poem oral<br><br>
-
-<b>GK</b><br>
-Chapter 31,33,34,35,37<br><br>
-
-<b>Conversation</b><br>
-Chapter 15–20
+English ch 2,6,7,9,10 • Maths ch 7–11 • Hindi oral • EVS • Bengali • GK • Conversation
 </div>
 
 <!-- CLASS II -->
 <div id="syllabusClassII" class="syllabus-box syllabusContent">
-<b>English</b><br>
-Chapter 2,3,6,9,10<br>
-Poem “The Swing”<br><br>
-
-<b>Maths</b><br>
-Time, Money, Fraction, Measurement, Geometry<br><br>
-
-<b>EVS</b><br>
-Chapter 5,8,9,12,13<br><br>
-
-<b>Hindi</b><br>
-Chapter 13–21, कविता “कौन सिखाता है?”<br><br>
-
-<b>Bengali</b><br>
-Chapter 13–19, Project, Image Pg 53<br><br>
-
-<b>GK</b><br>
-Chapter 33,34,36,37,38,39,43<br><br>
-
-<b>Conversation</b><br>
-Chapter 15–20
+English ch 2,3,6,9,10 • Maths ch 8–12 • EVS • Hindi • Bengali • GK • Conversation
 </div>
 
 <!-- CLASS III -->
 <div id="syllabusClassIII" class="syllabus-box syllabusContent">
-<b>English</b><br>
-Chapter 2,3,5,9,10 – Poem “The Song of the Engine”<br><br>
-
-<b>Science</b><br>
-Chapter 10–14<br><br>
-
-<b>Hindi</b><br>
-Chapter 13–17<br><br>
-
-<b>Computer</b><br>
-Chapter 8,9 – Lab, Worksheet, Project<br><br>
-
-<b>Bengali</b><br>
-Chapter 3,5,13,15,17 – Oral, Dictation<br><br>
-
-<b>SST</b><br>
-Chapter 11,14,16,17,19<br><br>
-
-<b>GK</b><br>
-Chapter 30–44<br><br>
-
-<b>Maths</b><br>
-Chapter 9–13
+English • Science • Hindi • Computer • Bengali • SST • GK • Maths
 </div>
 
 <div id="syllabusClassIV" class="syllabus-box syllabusContent">{blank}</div>
@@ -353,6 +248,21 @@ Chapter 9–13
 <div id="syllabusClassIX" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassX" class="syllabus-box syllabusContent">{blank}</div>
 
+</div>
+
+<!-- ================= WEEKLY PLANNER ================= -->
+<div id="plannerSection" style="display:none;">
+<h3>Weekly Planner</h3>
+<div class="date-tag">Week: <span class="week-range"></span></div>
+</div>
+
+</section>
+
+<section>
+<h2>📝 Homework</h2>
+<div class="date-tag">Date: <span class="auto-date"></span></div>
+<div class="homework-box">
+Homework will be updated daily.
 </div>
 </section>
 
