@@ -180,6 +180,7 @@ Half-yearly examinations will begin next month. Students must complete syllabus 
 <button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
 </div>
 
+<!-- ================= SYLLABUS ================= -->
 <div id="syllabusSection" style="display:none;">
 <h3>📚 Syllabus</h3>
 
@@ -260,9 +261,79 @@ Lolly Pop – Pg 13<br>
 <div id="syllabusClassVI" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassVII" class="syllabus-box syllabusContent">{blank}</div>
 <div id="syllabusClassVIII" class="syllabus-box syllabusContent">{blank}</div>
-<div id="syllabusClassIX" class="syllabus-box syllabusContent">{blank}</div>
-<div id="syllabusClassX" class="syllabus-box syllabusContent">{blank}</div>
 
+<div id="syllabusClassIX" class="syllabus-box syllabusContent">
+<b>Mathematics:</b> Number Systems, Polynomials, Coordinate Geometry, Linear Equations, Geometry, Statistics<br><br>
+<b>Science:</b> Motion, Laws of Motion, Gravitation, Work & Energy, Matter, Cell, Tissues<br><br>
+<b>Social Science:</b> French Revolution, Geography of India, Democracy, Economics<br><br>
+<b>English:</b> Beehive, Moments, Grammar & Writing
+</div>
+
+<div id="syllabusClassX" class="syllabus-box syllabusContent">{blank}</div>
+</div>
+
+<!-- ================= WEEKLY PLANNER ================= -->
+<div id="plannerSection" style="display:none;">
+<h3>Weekly Planner</h3>
+<div class="date-tag">Week: <span class="week-range"></span></div>
+
+<div class="dropdown-row">
+<select id="plannerClass" onchange="showClass('planner')">
+<option value="">Select Class</option>
+<option>Nursery</option>
+<option>LKG</option>
+<option>UKG</option>
+<option>Class I</option>
+<option>Class II</option>
+<option>Class III</option>
+<option>Class IV</option>
+<option>Class V</option>
+<option>Class VI</option>
+<option>Class VII</option>
+<option>Class VIII</option>
+<option>Class IX</option>
+<option>Class X</option>
+</select>
+<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+</div>
+
+<div id="plannerNursery" class="planner-box plannerContent">{blank}</div>
+<div id="plannerLKG" class="planner-box plannerContent">{blank}</div>
+<div id="plannerUKG" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassI" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassII" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassIII" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassIV" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassV" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassVI" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassVII" class="planner-box plannerContent">{blank}</div>
+<div id="plannerClassVIII" class="planner-box plannerContent">{blank}</div>
+
+<div id="plannerClassIX" class="planner-box plannerContent">
+<b>Maths:</b> Polynomials Ex 2.1–2.2 (Pg 28–39)<br>
+<b>Science:</b> Motion numericals & derivations<br>
+<b>SST:</b> French Revolution Pg 5–18 + map<br>
+<b>English:</b> Beehive Ch 3 + Grammar
+</div>
+
+<div id="plannerClassX" class="planner-box plannerContent">{blank}</div>
+</div>
+</section>
+
+<section>
+<h2>📝 Homework</h2>
+<div class="date-tag">Date: <span class="auto-date"></span></div>
+
+<div class="homework-box">
+<b>Class I:</b> Alphabet A–F, counting 1–30, body parts drawing<br><br>
+<b>Class II:</b> Reading lesson 4, addition Ex 4.1, EVS notes<br><br>
+<b>Class III:</b> Paragraph writing, tables 3–8, EVS Q&A<br><br>
+<b>Class IV:</b> Nouns exercise, fractions Ex 6.3, science answers<br><br>
+<b>Class V:</b> Informal letter, decimals Ex 7.2, diagram work<br><br>
+<b>Class VI:</b> Vocabulary, integers Ex 6.3, science worksheet<br><br>
+<b>Class VII:</b> Notice writing, algebra Ex 9.2, nutrition notes<br><br>
+<b>Class VIII:</b> Active-Passive, linear equations Ex 2.4, numericals<br><br>
+<b>Class IX:</b> Polynomials Ex 2.2, motion derivations, SST Q&A
 </div>
 </section>
 
