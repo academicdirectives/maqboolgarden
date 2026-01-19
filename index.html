@@ -105,17 +105,6 @@ select{
     padding:30px;
     display:none;
 }
-.planner-box{
-    border-left:8px solid #3498db;
-    background:#f2f8ff;
-    padding:30px;
-    display:none;
-}
-.homework-box{
-    border-left:8px solid #f39c12;
-    background:#fff8e1;
-    padding:30px;
-}
 .date-tag{
     font-size:36px;
     color:#444;
@@ -125,35 +114,20 @@ select{
 
 <script>
 function showSection(id){
-    syllabusSection.style.display="none";
-    plannerSection.style.display="none";
+    document.getElementById("syllabusSection").style.display="none";
+    document.getElementById("plannerSection").style.display="none";
     document.getElementById(id).style.display="block";
 }
+
 function showClass(type){
     let cls=document.getElementById(type+"Class").value;
-    document.querySelectorAll("."+type+"Content")
-      .forEach(c=>c.style.display="none");
-    if(cls) document.getElementById(type+cls).style.display="block";
+    document.querySelectorAll("."+type+"Content").forEach(
+        c=>c.style.display="none"
+    );
+    if(cls){
+        document.getElementById(type+cls.replace(" ","")).style.display="block";
+    }
 }
-function refreshPage(){ location.reload(); }
-
-window.onload=function(){
-    const today=new Date();
-    const opt={day:'numeric',month:'long',year:'numeric'};
-    document.querySelectorAll(".auto-date")
-      .forEach(e=>e.innerText=today.toLocaleDateString("en-IN",opt));
-
-    const day=today.getDay();
-    const monday=new Date(today);
-    monday.setDate(today.getDate()-(day===0?6:day-1));
-    const saturday=new Date(monday);
-    saturday.setDate(monday.getDate()+5);
-
-    document.querySelectorAll(".week-range")
-      .forEach(e=>e.innerText=
-        monday.toLocaleDateString("en-IN",opt)+" – "+
-        saturday.toLocaleDateString("en-IN",opt));
-};
 </script>
 </head>
 
@@ -166,41 +140,20 @@ window.onload=function(){
 </header>
 
 <section>
-<h2>📢 Notice Board</h2>
-<div class="notice-board">
-Half-yearly examinations will begin next month. Students must complete syllabus on time. Parents are requested to monitor daily homework and attendance regularly.
-</div>
-</section>
-
-<section>
 <h2>📘 Academic Directives</h2>
 
 <div class="directive-buttons">
 <button class="btn-syllabus" onclick="showSection('syllabusSection')">📚 Syllabus</button>
-<button class="btn-planner" onclick="showSection('plannerSection')">✔ Weekly Planner</button>
 </div>
 
-<div id="syllabusSection" style="display:none;">
+<div id="syllabusSection">
 <h3>📚 Syllabus</h3>
 
 <div class="dropdown-row">
 <select id="syllabusClass" onchange="showClass('syllabus')">
 <option value="">Select Class</option>
-<option>Nursery</option>
-<option>LKG</option>
-<option>UKG</option>
 <option>Class I</option>
-<option>Class II</option>
-<option>Class III</option>
-<option>Class IV</option>
-<option>Class V</option>
-<option>Class VI</option>
-<option>Class VII</option>
-<option>Class VIII</option>
-<option>Class IX</option>
-<option>Class X</option>
 </select>
-<button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
 <!-- CLASS I -->
@@ -212,11 +165,11 @@ Dictation<br>
 Project Work<br><br>
 
 <b>Sub – Maths</b><br>
-Ch–7 (Multiplication)<br>
-Ch–8 (Time)<br>
-Ch–9 (Money)<br>
-Ch–10 (Measurement)<br>
-Ch–11 (Shapes and Patterns)<br><br>
+Ch–7 Multiplication<br>
+Ch–8 Time<br>
+Ch–9 Money<br>
+Ch–10 Measurement<br>
+Ch–11 Shapes and Patterns<br><br>
 
 <b>Sub – Hindi</b><br>
 Chapter 11, 12, 14, 20, 21, 24 &amp; 28 (Oral)<br>
@@ -231,17 +184,20 @@ Dictation<br><br>
 
 <b>Sub – Bengali</b><br>
 Chapter 13, 14, 15, 16, 17<br>
-কবিতা – আমাদের দেশে হবে সেই ছেলে কবে? (মৌখিক, পৃ–৩৯)<br><br>
+কবিতা – আমাদের দেশে হবে সেই ছেলে কবে? (মৌখিক)<br><br>
 
 <b>Sub – G.K</b><br>
 Chapter 31, 33, 34, 35, 37<br>
-Test Paper – 1 and 2<br><br>
+Test Paper 1 &amp; 2<br><br>
 
 <b>Sub – Conversation</b><br>
 Chapter 15, 17, 18, 19, 20
 </div>
 
 </div>
+
+<div id="plannerSection" style="display:none;"></div>
+
 </section>
 
 </body>
