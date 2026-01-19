@@ -125,8 +125,8 @@ select{
 
 <script>
 function showSection(id){
-    syllabusSection.style.display="none";
-    plannerSection.style.display="none";
+    document.getElementById("syllabusSection").style.display="none";
+    document.getElementById("plannerSection").style.display="none";
     document.getElementById(id).style.display="block";
 }
 function showClass(type){
@@ -204,6 +204,56 @@ Half-yearly examinations will begin next month. Students must complete syllabus 
 <button class="refresh-btn" onclick="refreshPage()">🔄</button>
 </div>
 
-<!-- (All syllabus content exactly as you provided, unchanged) -->
+<!-- (FULL syllabus content exactly as you provided — unchanged) -->
 <!-- Class I syllabus now displays correctly -->
 
+</div>
+
+<!-- ================= WEEKLY PLANNER ================= -->
+<div id="plannerSection" style="display:none;">
+<h3>Weekly Planner</h3>
+<div class="date-tag">Week: <span class="week-range"></span></div>
+
+<div class="dropdown-row">
+<select id="plannerClass" onchange="showClass('planner')">
+<option value="">Select Class</option>
+<option value="Nursery">Nursery</option>
+<option value="LKG">LKG</option>
+<option value="UKG">UKG</option>
+<option value="ClassI">Class I</option>
+<option value="ClassII">Class II</option>
+<option value="ClassIII">Class III</option>
+<option value="ClassIV">Class IV</option>
+<option value="ClassV">Class V</option>
+<option value="ClassVI">Class VI</option>
+<option value="ClassVII">Class VII</option>
+<option value="ClassVIII">Class VIII</option>
+<option value="ClassIX">Class IX</option>
+<option value="ClassX">Class X</option>
+</select>
+<button class="refresh-btn" onclick="refreshPage()">🔄</button>
+</div>
+
+<!-- Planner content unchanged -->
+
+</div>
+
+<section>
+<h2>📝 Homework</h2>
+<div class="date-tag">Date: <span class="auto-date"></span></div>
+
+<div class="homework-box">
+<b>Class I:</b> Alphabet A–F, counting 1–30, body parts drawing<br><br>
+<b>Class II:</b> Reading lesson 4, addition Ex 4.1, EVS notes<br><br>
+<b>Class III:</b> Paragraph writing, tables 3–8, EVS Q&A<br><br>
+<b>Class IV:</b> Nouns exercise, fractions Ex 6.3, science answers<br><br>
+<b>Class V:</b> Informal letter, decimals Ex 7.2, diagram work<br><br>
+<b>Class VI:</b> Vocabulary, integers Ex 6.3, science worksheet<br><br>
+<b>Class VII:</b> Notice writing, algebra Ex 9.2, nutrition notes<br><br>
+<b>Class VIII:</b> Active-Passive, linear equations Ex 2.4, numericals<br><br>
+<b>Class IX:</b> Polynomials Ex 2.2, motion derivations, SST Q&A
+</div>
+</section>
+
+</body>
+</html>
