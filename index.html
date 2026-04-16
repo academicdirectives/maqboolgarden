@@ -2,32 +2,46 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
+<!-- ✅ MOBILE FIX -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Surah & Seerah</title>
 
 <style>
-body { font-family:'Segoe UI',sans-serif;margin:0;background:#f1f5f2; }
+body {
+    font-family:'Segoe UI',sans-serif;
+    margin:0;
+    background:#f1f5f2;
+    overflow-x:hidden; /* ✅ prevents horizontal scroll */
+}
 
 header {
     background:#0f3d2e;
     color:#f5d36c;
-    padding:15px;
+    padding:12px;
     text-align:center;
     font-weight:bold;
+    font-size:16px;
 }
 
 .tabs { display:flex;background:#145a42; }
 
 .tab {
     flex:1;
-    padding:12px;
+    padding:10px;
     text-align:center;
     color:white;
     cursor:pointer;
+    font-size:14px;
 }
 
 .active { background:#1abc9c; }
 
-.content { display:none;padding:15px; }
+.content {
+    display:none;
+    padding:10px;
+}
 .show { display:block; }
 
 select {
@@ -35,39 +49,61 @@ select {
     padding:10px;
     margin-bottom:10px;
     border-radius:6px;
+    font-size:14px;
 }
 
+/* ✅ CONTENT BOX FIX */
 .content-box{
     background:white;
-    padding:15px;
+    padding:12px;
     border-radius:8px;
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
     position:relative;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
 }
 
 /* SECTION WRAPPER */
 .section{
     position:relative;
     background:white;
-    padding:15px;
+    padding:12px;
     border-radius:8px;
-    margin-bottom:15px;
+    margin-bottom:12px;
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* 💜➡️💙 AI BUTTON */
+/* AI BUTTON */
 .ai-btn{
-    width:34px;
-    height:34px;
+    width:30px;
+    height:30px;
     border-radius:50%;
     background:linear-gradient(135deg,#7c3aed,#2563eb);
     color:white;
     border:none;
-    font-size:11px;
+    font-size:10px;
     cursor:pointer;
     position:absolute;
-    top:8px;
-    right:8px;
+    top:6px;
+    right:6px;
+}
+
+/* ✅ TEXT FIX */
+p, li, blockquote {
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* ✅ BLOCKQUOTE FIX */
+blockquote{
+    overflow-x:auto;
+    word-break:break-word;
+}
+
+/* ✅ EXTRA SMALL DEVICES */
+@media(max-width:400px){
+    header{font-size:14px;}
+    .tab{font-size:12px;padding:8px;}
 }
 </style>
 
@@ -104,7 +140,6 @@ window.open(`https://chat.openai.com/?q=${encodeURIComponent(prompt)}`);
 
 // ===== ADD AI BUTTONS =====
 
-// Seerah → full chapter
 function addSeerahAI(){
 let box = document.querySelector("#seerahContent .content-box");
 if(!box) return;
@@ -120,7 +155,6 @@ btn.onclick = ()=>handleSeerahAI(box.innerText);
 box.appendChild(btn);
 }
 
-// Ruku → overview + verses
 function addVerseAI(){
 
 document.querySelectorAll("#contentArea h3").forEach(el=>{
@@ -208,305 +242,15 @@ const ruku4 = `
 <h4>Repentance</h4>
 <p>Allah accepted Adam’s sincere repentance.</p>
 `;
-const ruku6 = `
 
-<h3 style="color:#145a42;"><b>Seerah and Context (Verse Range: 47–59 | Ruku: 06)</b></h3>
+const ruku6 = ``;
 
-<p><b>Favors and Punishments</b></p>
+const seerah4 = ``;
 
-<p>
-This Ruku acts as a detailed historical record of the survival and spiritual evolution of the Children of Israel. It moves beyond generalities to list specific, miraculous interventions that saved the nation from total extinction. Each verse is a link in a chain, showing that whenever the people reached the brink of destruction—whether by the sword of Pharaoh, the depths of the sea, or the darkness of a spiritual void—Allah intervened with a unique "escape."
-</p>
+const story1 = ``;
 
-<p>
-In Madinah, the Jewish tribes often cited their noble ancestry as proof of their inherent salvation. This Ruku was a direct response to that claim. It taught the Prophet ﷺ and the early Muslims that the "title" of being a chosen people is not a permanent shield; rather, it is a heavy trust. It warned the Sahaba that even after witnessing great miracles, the human heart can still harden if it is not continuously polished with gratitude and obedience.
-</p>
+const story3 = ``;
 
-<h4 style="color:#1abc9c;"><b>47–48. The Call to Individual Responsibility</b></h4>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<b>يَا بَنِي إِسْرَائِيلَ اذْكُرُوا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ وَأَنِّي فَضَّلْتُكُمْ عَلَى الْعَالَمِينَ ﴿٤٧﴾ وَاتَّقُوا يَوْمًا لَّا تَجْزِي نَفْسٌ عَن نَّفْسٍ شَيْئًا... ﴿٤٨﴾</b><br><br>
-
-<b>"O Children of Israel, remember My favor which I have bestowed upon you and that I preferred you over the worlds. And fear a Day when no soul will suffice for another soul at all..."</b><br><br>
-
-<b>ऐ बनी इस्राईल! मेरी उस नेमत को याद करो जो मैंने तुम पर की और यह कि मैंने तुम्हें (उस ज़माने के) तमाम जहानों पर फ़ज़ीलत दी। और उस दिन से डरो जिस दिन कोई जान किसी दूसरी जान के काम न आएगी...</b>
-</blockquote>
-
-<p><b>Literary Explanation</b></p>
-
-<p>
-This verse is a wake-up call. It begins by acknowledging their high status—how Allah chose them to lead humanity at that time—but immediately balances it with a warning about the Day of Judgment. The transition from "Favor" to "Fear" removes any sense of complacency. It explains that on that Day, family names, tribal connections, and even the greatness of ancestors won't help. Every person will stand alone, and only their own faith and deeds will matter.
-</p>
-
-<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
-
-<ul>
-<li>The "Preference" was specific to their time, as they were the only nation carrying the message of Monotheism while the rest of the world was in paganism. It highlights that the favor of Allah is a debt that must be paid through worship and sincerity, not just pride in lineage.</li>
-
-<li>The Day of Judgment is described as a place where no "compensation" or "intercession" will be accepted for those who rejected the truth. While the intercession of Prophets exists for sinful believers, it cannot be used as a "loophole" by those who intentionally turned away from the Divine Covenant.</li>
-</ul>
-
-<h4 style="color:#1abc9c;"><b>49–50. The Miracle of the Sea</b></h4>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<b>وَإِذْ نَجَّيْنَاكُم مِّنْ آلِ فِرْعَوْنَ يَسُومُونَكُمْ سُوءَ الْعَذَابِ... ﴿٤٩﴾ وَإِذْ فَرَقْنَا بِكُمُ الْبَحْرَ فَأَنجَيْنَاكُمْ وَأَغْرَقْنَا آلَ فِرْعَوْنَ وَأَنتُمْ تَنظُرُونَ ﴿٥٠﴾</b><br><br>
-
-<b>"And [recall] when We saved your forefathers from the people of Pharaoh... And [recall] when We parted the sea for you and saved you and drowned the people of Pharaoh while you were looking on."</b><br><br>
-
-<b>और (याद करो) जब हमने तुम्हें फ़िरऔन के लोगों से निजात दी जो तुम्हें बुरा अज़ाब देते थे... और जब हमने तुम्हारे लिए समंदर को फाड़ दिया और तुम्हें बचा लिया और फ़िरऔन वालों को डुबो दिया और तुम देख रहे थे।</b>
-</blockquote>
-
-<p><b>Literary Explanation</b></p>
-
-<p>
-This part vividly describes the transition from the "horrible torment" of slavery under Pharaoh to the "miraculous freedom" at the sea. It highlights that Allah didn't just save them; He let them *watch* as their powerful oppressor was defeated. The phrase "while you were looking on" indicates that the destruction of their enemy was made a public spectacle to heal their psychological wounds from generations of slavery.
-</p>
-
-<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
-
-<ul>
-<li>The "horrible torment" included the slaughter of their newborn sons and the sparing of their daughters for domestic servitude. This deliverance occurred on the day of *Ashura*, which the Prophet ﷺ later commanded Muslims to fast in gratitude, linking the history of Bani Isra'il to the Ummah of Islam.</li>
-
-<li>The parting of the sea is a sign of Allah’s absolute power over nature. It serves as a reminder that when a believer is trapped between an enemy and a sea, Allah can create a path where there seems to be none, provided there is faith and trust in the Divine promise.</li>
-</ul>
-
-<h4 style="color:#1abc9c;"><b>51–54. The Betrayal and Repentance</b></h4>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<b>وَإِذْ وَاعَدْنَا مُوسَىٰ أَرْبَعِينَ لَيْلَةً ثُمَّ اتَّخَذْتُمُ الْعِجْلَ مِن بَعْدِهِ... ﴿٥١﴾ ثُمَّ عَفَوْنَا عَنكُم مِّن بَعْدِ ذَٰلِكَ... ﴿٥٢﴾</b><br><br>
-
-<b>"And [recall] when We made an appointment with Moses for forty nights. Then you took the calf [for worship] after him... Then We forgave you after that..."</b><br><br>
-
-<b>और जब हमने मूसा (अलैहि.) से चालीस रातों का वादा किया, फिर उनके पीछे तुमने बछड़े को (माबूद) बना लिया... फिर हमने उसके बाद तुम्हें माफ़ कर दिया...</b>
-</blockquote>
-
-<p><b>Literary Explanation</b></p>
-
-<p>
-Here, the Quran exposes how fragile their faith was. As soon as Musa (AS) went to the mountain to receive the Torah, they went back to worshipping a golden calf. It shows that they were still mentally "enslaved" to visible idols. Their repentance required a very difficult physical and spiritual sacrifice—a "killing" of their old, sinful selves—to prove they were ready to return to pure Monotheism.
-</p>
-
-<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
-
-<ul>
-<li>The incident of the calf is a warning that spiritual instability often follows great miracles if the heart is not grounded. The command to "kill yourselves" (the guilty among them) was a severe test of their sincerity, showing that some sins are so grave that their purification requires extreme sacrifice.</li>
-
-<li>Even after such a massive sin, Allah used the word "forgave." This proves that there is no sin too great for Allah’s mercy, provided the repentance follows the Divine protocol. It highlights that the doors of mercy are never closed as long as a person is willing to admit their fault.</li>
-</ul>
-
-<h4 style="color:#1abc9c;"><b>55–56. The Thunderbolt and Rebirth</b></h4>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<b>وَإِذْ قُلْتُمْ يَا مُوسَىٰ لَن نُّؤْمِنَ لَكَ حَتَّىٰ نَرَى اللَّهَ جَهْرَةً فَأَخَذَتْكُمُ الصَّاعِقَةُ... ﴿٥٥﴾ ثُمَّ بَعَثْنَاكُم مِّن بَعْدِ مَوْتِكُمْ لَعَلَّكُمْ تَشْكُرُونَ ﴿٥٦﴾</b><br><br>
-
-<b>"And [recall] when you said, 'O Moses, we will never believe you until we see Allah outright'; so the thunderbolt took you... Then We revived you after your death that perhaps you would be grateful."</b><br><br>
-
-<b>और जब तुमने कहा, "ऐ मूसा! हम हरगिज़ तुम्हारा यक़ीन नहीं करेंगे जब तक हम अल्लाह को साफ़-साफ़ न देख लें"; तो तुम्हें बिजली ने आ पकड़ा... फिर हमने तुम्हें तुम्हारी मौत के बाद ज़िन्दा किया ताकि तुम शुक्रगुज़ार बनो।</b>
-</blockquote>
-
-<p><b>Literary Explanation</b></p>
-
-<p>
-This verse describes their ultimate stubbornness and materialist mindset. They demanded to see Allah with their physical eyes as a condition for faith. Since human eyes cannot endure the pure Majesty of Allah in this world, they were struck by a thunderbolt. But Allah, in His infinite mercy, brought them back to life—using the same word for "Resurrection"—to give them another chance to develop gratitude.
-</p>
-
-<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
-
-<ul>
-<li>Demanding to "see Allah" out of stubbornness is a sign of extreme disrespect (*Be-Adabi*). This event served as a "visual proof" of the Day of Resurrection, showing that life and death are entirely within Divine command and can be reversed at any moment.</li>
-
-<li>Being brought back to life after perishing was a "second chance" at existence. It highlights that the purpose of physical life is to develop spiritual gratitude (*Shukr*). Without gratitude, a person is spiritually dead even if they are physically breathing.</li>
-</ul>
-
-<h4 style="color:#1abc9c;"><b>57–59. The Provisions and the Mockery</b></h4>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<b>وَظَلَّلْنَا عَلَيْكُمُ الْغَمَامَ وَأَنزَلْنَا عَلَيْكُمُ الْمَنَّ وَالسَّلْوَىٰ... ﴿٥٧﴾ فَبَدَّلَ الَّذِينَ ظَلَمُوا قَوْلًا غَيْرَ الَّذِي قِيلَ لَهُمْ... ﴿٥٩﴾</b><br><br>
-
-<b>"And We shaded you with clouds and sent down to you manna and quails... But those who wronged changed [those words] to a statement other than that which had been said to them..."</b><br><br>
-
-<b>और हमने तुम पर बादलों का साया किया और तुम पर 'मन्न और सलवा' उतारा... मगर उन ज़ालिमों ने उस बात को बदल दिया जो उनसे कही गई थी...</b>
-</blockquote>
-
-<p><b>Literary Explanation</b></p>
-
-<p>
-Even in the hot desert, Allah protected them with "clouds" for shade and "heavenly food" (Manna and Salwa) that required no labor. However, when told to enter a city with humility saying a word of seeking forgiveness (*Hittatun*), they mockingly changed the word. Because they turned a sacred ritual into a joke, they faced a plague as a consequence. It shows that they were more concerned with their desires than their spiritual dignity.
-</p>
-
-<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
-
-<ul>
-<li>The "cloud" followed them like a canopy in the wilderness, providing a constant miracle of comfort. The "plague" sent upon them was a direct result of their mocking the Divine command, proving that Allah does not tolerate the mockery of His rituals or the twisting of His words.</li>
-
-<li>Changing the word of repentance to a word of mockery (related to food) represents a deeper disease: the habit of twisting Divine commands to fit worldly desires. It teaches the believers that the specific words of *Dhikr* and *Salah* are fixed by Allah and must be respected exactly as they were taught.</li>
-</ul>
-
-`;
-const seerah4 = `
-
-<p>
-Long before the first words of the heavens touched the valley of Makkah, there was a man who moved through its alleys with such a gentle, observant grace that everyone, friend and foe alike, called him <b>Al-Amin</b>, the Trustworthy.
-</p>
-
-<p>
-Imagine a scorching afternoon some five years before the revelation. The <b>Kaaba</b>, the ancient heart of the city, had been battered by fierce floods. As the tribes finished the repairs, a bitter silence fell over the courtyard. A dispute had broken out: who would have the honor of placing the sacred Black Stone back into its corner? Pride was as sharp as a drawn sword, and a bloody tribal war was only a breath away. In that moment of intense pressure, Muhammad (PBUH) walked in. With a calm that seemed to come from another world, he did not take sides. Instead, he spread a large cloth upon the ground, placed the stone in its center, and invited a leader from every single clan to take hold of the fabric. Together, they lifted the stone as one body. It was a masterpiece of unity, mending a fractured society with a single simple gesture. Even then, the Meccans insisted that only "pure" wealth—money untainted by cheating or greed—could fund the sanctuary’s repair. It was a subtle sign that even in darkness, the human heart still seeks the light, just as the Quran reminds us:
-</p>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<i>"O mankind, eat from whatever is on earth [that is] lawful and good and do not follow the footsteps of Satan..."</i><br>
-<b>(Surah Al-Baqarah, 2:168)</b>
-</blockquote>
-
-<p>
-But his character was best seen in the quiet corners of his own home. Consider the young <b>Zayd ibn Harithah (RA)</b>. Zayd (RA) had been stolen from his family as a boy, yet in the Prophet’s (PBUH) house, he found a love so profound that when his biological father finally arrived with a purse of gold to ransom him, Zayd (RA) made a choice that stunned the city. He looked at the father who shared his blood, and then at the man who had raised him, and he chose to stay. He had found a nobility in Muhammad (PBUH) that transcended DNA. To honor this, the Prophet (PBUH) publicly adopted him, proving that the truest family is built on faith and shared values:
-</p>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<i>"The believers are but brothers, so make settlement between your brothers..."</i><br>
-<b>(Surah Al-Hujurat, 49:10)</b>
-</blockquote>
-
-<p>
-As the years drifted toward his fortieth winter, the noise of the city became too much. He began to seek the mountain air of <b>Jabal an-Nur</b>, finding peace in the small, shadowy <b>Cave of Hira</b>. There, under the velvet Arabian sky, the silence was eventually shattered by the Angel Jibril (AS). The first command, <b>"Read!"</b>, was met with a humble reply: <i>"I cannot read."</i> Jibril (AS) embraced him with a divine force that felt like the weight of the heavens, until finally, the first light of the Quran broke through:
-</p>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<i>"Recite in the name of your Lord who created... Who taught by the pen—Taught man that which he knew not."</i><br>
-<b>(Surah Al-'Alaq, 96:1-5)</b>
-</blockquote>
-
-<p>
-Trembling with the weight of the vision, he fled down the mountain to the warmth of his wife, <b>Khadijah (RA)</b>, who wrapped him in a blanket and even greater certainty. She reminded him that a man of his integrity—one who helped the poor and spoke the truth—would never be abandoned. Soon, the sky spoke again, commanding him to stand up. The time for quiet reflection was over; he was to arise and warn humanity, teaching us all that true nobility is not found in wealth or tribe, but in the righteousness of one's soul:
-</p>
-
-<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
-<i>"Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted."</i><br>
-<b>(Surah Al-Hujurat, 49:13)</b>
-</blockquote>
-
-`;
-const story1 = `
-
-<p>
-The story of Suhail ibn Amr (RA) is a remarkable journey of a man who moved from being the most stubborn voice against Islam to becoming its most steadfast defender in Makkah. It is a story that proves the Prophet (PBUH) could see a spark of goodness in a person even when everyone else saw only an enemy.
-</p>
-
-<p>
-For years, Suhail (RA) was the elite orator of the Quraysh. His words were his weapons, and he used them to mock the Prophet (PBUH) and stir up the tribes against the Muslims. During the **Battle of Badr**, he was captured as a prisoner. When **Umar (RA)** saw him, he was filled with protective anger. He approached the Prophet (PBUH) and said, *"O Messenger of Allah, let me pull out his two front teeth! That way, his tongue will hang out and he can never stand to give a speech against you again."*
-</p>
-
-<p>
-But the Prophet (PBUH) looked at Suhail (RA) with a deep, prophetic wisdom. He replied, **"No, Umar. I will not mutilate him, for then Allah would mutilate me, even though I am a Prophet. Besides, Umar, perhaps one day he will stand in a position that will make you happy."** Years later, during the **Treaty of Hudaybiyyah**, Suhail (RA) appeared again, this time as the lead negotiator for Makkah. He was incredibly difficult and proud. When the Prophet (PBUH) told Ali (RA) to write  "Muhammad, the Messenger of Allah," on the treaty, but Suhail (RA) objected again: "If we believed you were the Messenger of Allah, we wouldn't be fighting you. Write 'Muhammad, the son of Abdullah.'"
-</p>
-
-<p>
-The companions were furious at his disrespect, but the Prophet (PBUH) remained calm and agreed to the terms for the sake of peace. During these negotiations, Suhail’s own son, Abu Jandal (RA), who had converted to Islam and was being held prisoner in Makkah, escaped and reached the Muslim camp in chains, begging for help. Because of the treaty he had just signed, the Prophet (PBUH) had to make the agonizing decision to send Abu Jandal (RA) back with his father. It was a heartbreaking moment that tested the patience of the Muslims, but the Prophet (PBUH) told them that Allah would soon provide a way out.
-</p>
-
-<p>
-When the Prophet (PBUH) finally opened Makkah years later, Suhail (RA) expected to be punished for his past. Instead, the Prophet (PBUH) forgave everyone. This overwhelming mercy—being forgiven by the man he had insulted and fought for two decades—shattered Suhail’s (RA) pride. He realized that such mercy could only come from a true Messenger of God, and he embraced Islam with total sincerity.
-</p>
-
-<p>
-The prophecy made at Badr finally came true on the darkest day in early Islamic history: the day the Prophet (PBUH) passed away. While Makkah was in a state of absolute shock and many new Muslims were ready to leave the faith out of grief, Suhail ibn Amr (RA) stood up by the **Kaaba**. He used that same powerful, silver-tongued voice—the one Umar (RA) had once wanted to silence—to anchor the hearts of the people.
-</p>
-
-<p>
-He shouted, *"O people of Makkah! Do not be the last to enter Islam and the first to leave it! If Muhammad (PBUH) has died, then know that Allah is Ever-Living and does not die!"*
-</p>
-
-<p>
-When the news of this reached **Umar (RA)** in Madinah, he wept. He finally understood what the Prophet (PBUH) had seen in that prisoner all those years ago. The man who had once been the greatest enemy of Islam had become the one to save the faith in Makkah. It was exactly the "position" the Prophet (PBUH) said would make Umar (RA) happy.
-</p>
-
-<blockquote>
-*"The believers are but brothers, so make settlement between your brothers. And fear Allah that you may receive mercy."* (**Surah Al-Hujurat, 49:10**)
-</blockquote>
-
-<p>
-Suhail (RA) spent the rest of his life in deep worship and eventually died as a martyr, proving that no heart is too hard for the mercy of Allah to soften.
-</p>
-`;
-  const story3 = `
-
-<p>
-The story of **Salman al-Farsi (RA)** is a remarkable journey of a man who traveled across continents, through different religions, and even through slavery, all in a desperate search for the Truth. He was eventually known as "Salman from the Household of the Prophet," a title given to him by the Prophet (PBUH) himself.
-</p>
-
-<h3> **The Persian Noble and the Sacred Fire**</h3>
-
-<p>
-Salman (RA) was born into a wealthy and noble family in Isfahan, Persia. His father was the chief of the village and a devoted priest of the Magian (Zoroastrian) faith. Salman (RA) was so cherished by his father that he was kept confined to their home to protect him. He was trained to be a guardian of the "sacred fire," ensuring it never went out.
-</p>
-
-<p>
-One day, while on an errand for his father, Salman (RA) passed by a Christian church. He heard the sound of people praying and was intrigued. After entering and learning about their faith, he realized it was better than the religion of his ancestors. When he told his father, his father was furious and chained Salman’s (RA) legs to keep him from leaving. However, Salman (RA) managed to escape and joined a caravan heading toward Syria, the center of the Christian faith at the time.
-</p>
-
-<h3> **The Search for the Final Prophet**</h3>
-
-<p>
-In Syria, Salman (RA) began a long journey of serving one Christian scholar after another. As each teacher was near death, Salman (RA) would ask, "To whom do you recommend I go next?"
-</p>
-
-<p>
-Finally, his last teacher, a very old and righteous monk in Amuria, told him: *"O my son, I do not know of anyone who is left on the same path we are on. However, the time for the appearance of a Prophet is near. He will be sent with the religion of Ibrahim (AS) and will appear in a land of palm trees between two fields of black rocks. He has signs that cannot be hidden: He eats from gifts but does not eat from charity (Sadaqah), and between his shoulder blades is the Seal of Prophethood."*
-</p>
-
-<h3> **Slavery and the Arrival in Madinah**</h3>
-
-<p>
-Desperate to find this Prophet, Salman (RA) paid a group of Arab traders to take him to the land of the Arabs. However, they betrayed him and sold him as a slave to a Jewish man. He was later sold again to another man from the tribe of Banu Qurayza, who took him to **Yathrib** (which we now know as Madinah).
-</p>
-
-<p>
-When Salman (RA) saw the thousands of date palm trees in the city, his heart soared; he knew he had found the place the monk had described. He spent years working as a slave in the date groves, waiting for news of a Prophet. One day, while he was at the top of a palm tree, he heard his master talking about a man who had arrived from Makkah claiming to be a Prophet. Salman (RA) was so excited he nearly fell out of the tree.
-</p>
-
-<h3> **The Three Signs**</h3>
-
-<p>
-Salman (RA) decided to test the man using the three signs the monk had given him:
-</p>
-
-<p>
- 1. **Charity:** Salman (RA) brought some dates to the Prophet (PBUH) and said, *"This is charity (Sadaqah)."* The Prophet (PBUH) told his companions to eat, but he did not eat any himself. (Sign One: Check).
-</p>
-
-<p>
- 2. **Gifts:** A few days later, Salman (RA) brought more dates and said, *"This is a gift."* This time, the Prophet (PBUH) ate from them and invited his companions to join. (Sign Two: Check).
-</p>
-
-<p>
- 3. **The Seal:** Finally, Salman (RA) followed the Prophet (PBUH) during a funeral, trying to see his back. The Prophet (PBUH) realized what Salman (RA) was looking for and shifted his cloak. Salman (RA) saw the **Seal of Prophethood** exactly as it had been described. (Sign Three: Check).
-</p>
-
-<p>
-Overwhelmed with joy, Salman (RA) fell at the Prophet’s (PBUH) feet, weeping and kissing his hands. He embraced Islam on the spot.
-</p>
-
-<h3> **The Freedom and the Trench**</h3>
-
-<p>
-The Prophet (PBUH) helped Salman (RA) buy his freedom from his master by helping him plant hundreds of palm trees and providing a large amount of gold. Once free, Salman (RA) became one of the closest companions.
-</p>
-
-<p>
-His greatest moment came during the **Battle of the Trench** (*Khandaq*). When the massive armies of the Quraysh were marching toward Madinah, the Muslims were terrified. Salman (RA) suggested a strategy that the Arabs had never seen before: digging a deep, wide trench around the city. This Persian tactic saved Madinah and led to a great victory for the Muslims.
-</p>
-
-<h3>**Salman is from Us**</h3>
-
-<p>
-During the digging of the trench, both the Muhajirun (migrants from Makkah) and the Ansar (helpers of Madinah) claimed Salman (RA) as one of their own because of his bravery and wisdom. The Prophet (PBUH) settled the matter by saying: **"Salman is from us, the People of the Household (Ahl al-Bayt)."**
-</p>
-
-<p>
-Salman al-Farsi (RA) lived a long life, eventually becoming the governor of Ctesiphon in Persia. Despite his high rank, he remained incredibly humble, weaving baskets to earn his own living and giving his salary to the poor. He proved that Islam is not about where you are born, but about the sincerity of your search for the truth.
-</p>
-
-`;
 // ===== DATA =====
 
 const rukuData = {
@@ -562,10 +306,10 @@ chapters:{
 
 const storyData = {
 "1": { title:"The story of Suhail (RA)", content:[story1] },
- "2": { title:"The story of Salman AL- Farsi", content:[story3] }
+"2": { title:"The story of Salman AL- Farsi", content:[story3] }
 };
 
-// ===== FUNCTIONS =====
+// ===== FUNCTIONS (UNCHANGED) =====
 
 function loadRukuDropdown(){
 let s=document.getElementById("surahSelect").value;
