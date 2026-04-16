@@ -1,1 +1,400 @@
-.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Surah & Seerah</title>
+
+<style>
+body { font-family:'Segoe UI',sans-serif;margin:0;background:#f1f5f2; }
+
+header {
+    background:#0f3d2e;
+    color:#f5d36c;
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.tabs { display:flex;background:#145a42; }
+
+.tab {
+    flex:1;
+    padding:12px;
+    text-align:center;
+    color:white;
+    cursor:pointer;
+}
+
+.active { background:#1abc9c; }
+
+.content { display:none;padding:15px; }
+.show { display:block; }
+
+select {
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    border-radius:6px;
+}
+
+.content-box{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    position:relative;
+}
+
+/* SECTION WRAPPER */
+.section{
+    position:relative;
+    background:white;
+    padding:15px;
+    border-radius:8px;
+    margin-bottom:15px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 💜➡️💙 AI BUTTON */
+.ai-btn{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    color:white;
+    border:none;
+    font-size:11px;
+    cursor:pointer;
+    position:absolute;
+    top:8px;
+    right:8px;
+}
+</style>
+
+<script>
+
+// ===== TAB =====
+function openTab(tab){
+document.querySelectorAll(".content").forEach(c=>c.classList.remove("show"));
+document.getElementById(tab).classList.add("show");
+
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+event.currentTarget.classList.add("active");
+}
+
+// ===== AI HANDLERS =====
+
+function handleSeerahAI(text){
+let prompt = `${text}
+
+ask me anything related to the above section.`;
+
+window.open(`https://chat.openai.com/?q=${encodeURIComponent(prompt)}`);
+}
+
+function handleRukuAI(text){
+let prompt = `${text}
+
+👉 translation menu: command me to translate this in any language.
+1 (Urdu), 2 (Hindi-Urdu), 3 (Bengali), 4 (Tamil),
+5 (ask anything), 6 (word-by-word learning & memorization)`;
+
+window.open(`https://chat.openai.com/?q=${encodeURIComponent(prompt)}`);
+}
+
+// ===== ADD AI BUTTONS =====
+
+// Seerah → full chapter
+function addSeerahAI(){
+let box = document.querySelector("#seerahContent .content-box");
+if(!box) return;
+
+if(box.querySelector(".ai-btn")) return;
+
+let btn = document.createElement("button");
+btn.className="ai-btn";
+btn.innerText="AI";
+
+btn.onclick = ()=>handleSeerahAI(box.innerText);
+
+box.appendChild(btn);
+}
+
+// Ruku → overview + verses
+function addVerseAI(){
+
+document.querySelectorAll("#contentArea h3").forEach(el=>{
+
+    if(el.parentElement.classList.contains("section")) return;
+
+    let wrapper = document.createElement("div");
+    wrapper.className = "section";
+
+    let btn = document.createElement("button");
+    btn.className = "ai-btn";
+    btn.innerText = "AI";
+
+    btn.onclick = function(){
+        handleRukuAI(wrapper.innerText);
+    };
+
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(btn);
+
+    while(el.nextSibling && !["H3","H4"].includes(el.nextSibling.tagName)){
+        wrapper.appendChild(el.nextSibling);
+    }
+
+    wrapper.insertBefore(el, btn.nextSibling);
+});
+
+document.querySelectorAll("#contentArea h4").forEach(el=>{
+
+    if(el.parentElement.classList.contains("section")) return;
+
+    let wrapper = document.createElement("div");
+    wrapper.className = "section";
+
+    let btn = document.createElement("button");
+    btn.className = "ai-btn";
+    btn.innerText = "AI";
+
+    btn.onclick = function(){
+        handleRukuAI(wrapper.innerText);
+    };
+
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(btn);
+
+    while(el.nextSibling && el.nextSibling.tagName !== "H4"){
+        wrapper.appendChild(el.nextSibling);
+    }
+
+    wrapper.insertBefore(el, btn.nextSibling);
+});
+
+}
+
+// ===== STORY AI =====
+function addStoryAI(){
+let box = document.querySelector("#storyContent .content-box");
+if(!box) return;
+
+if(box.querySelector(".ai-btn")) return;
+
+let btn = document.createElement("button");
+btn.className="ai-btn";
+btn.innerText="AI";
+
+btn.onclick = ()=>handleSeerahAI(box.innerText);
+
+box.appendChild(btn);
+}
+
+// ===== CONTENT =====
+
+const ruku4 = `
+<h3 style="color:#145a42;"><b>Story of Adam (AS)</b></h3>
+
+<h4>Creation of Adam</h4>
+<p>Allah created Adam (AS) and honored him with knowledge.</p>
+
+<h4>Prostration of Angels</h4>
+<p>All angels obeyed except Iblis due to arrogance.</p>
+
+<h4>Temptation</h4>
+<p>Shaytan deceived Adam and Hawwa.</p>
+
+<h4>Repentance</h4>
+<p>Allah accepted Adam’s sincere repentance.</p>
+`;
+const ruku6 = `
+
+<h3 style="color:#145a42;"><b>Seerah and Context (Verse Range: 47–59 | Ruku: 06)</b></h3>
+
+<p><b>Favors and Punishments</b></p>
+
+<p>
+This Ruku acts as a detailed historical record of the survival and spiritual evolution of the Children of Israel. It moves beyond generalities to list specific, miraculous interventions that saved the nation from total extinction. Each verse is a link in a chain, showing that whenever the people reached the brink of destruction—whether by the sword of Pharaoh, the depths of the sea, or the darkness of a spiritual void—Allah intervened with a unique "escape."
+</p>
+
+<p>
+In Madinah, the Jewish tribes often cited their noble ancestry as proof of their inherent salvation. This Ruku was a direct response to that claim. It taught the Prophet ﷺ and the early Muslims that the "title" of being a chosen people is not a permanent shield; rather, it is a heavy trust. It warned the Sahaba that even after witnessing great miracles, the human heart can still harden if it is not continuously polished with gratitude and obedience.
+</p>
+
+<h4 style="color:#1abc9c;"><b>47–48. The Call to Individual Responsibility</b></h4>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<b>يَا بَنِي إِسْرَائِيلَ اذْكُرُوا نِعْمَتِيَ الَّتِي أَنْعَمْتُ عَلَيْكُمْ وَأَنِّي فَضَّلْتُكُمْ عَلَى الْعَالَمِينَ ﴿٤٧﴾ وَاتَّقُوا يَوْمًا لَّا تَجْزِي نَفْسٌ عَن نَّفْسٍ شَيْئًا... ﴿٤٨﴾</b><br><br>
+
+<b>"O Children of Israel, remember My favor which I have bestowed upon you and that I preferred you over the worlds. And fear a Day when no soul will suffice for another soul at all..."</b><br><br>
+
+<b>ऐ बनी इस्राईल! मेरी उस नेमत को याद करो जो मैंने तुम पर की और यह कि मैंने तुम्हें (उस ज़माने के) तमाम जहानों पर फ़ज़ीलत दी। और उस दिन से डरो जिस दिन कोई जान किसी दूसरी जान के काम न आएगी...</b>
+</blockquote>
+
+<p><b>Literary Explanation</b></p>
+
+<p>
+This verse is a wake-up call. It begins by acknowledging their high status—how Allah chose them to lead humanity at that time—but immediately balances it with a warning about the Day of Judgment. The transition from "Favor" to "Fear" removes any sense of complacency. It explains that on that Day, family names, tribal connections, and even the greatness of ancestors won't help. Every person will stand alone, and only their own faith and deeds will matter.
+</p>
+
+<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
+
+<ul>
+<li>The "Preference" was specific to their time, as they were the only nation carrying the message of Monotheism while the rest of the world was in paganism. It highlights that the favor of Allah is a debt that must be paid through worship and sincerity, not just pride in lineage.</li>
+
+<li>The Day of Judgment is described as a place where no "compensation" or "intercession" will be accepted for those who rejected the truth. While the intercession of Prophets exists for sinful believers, it cannot be used as a "loophole" by those who intentionally turned away from the Divine Covenant.</li>
+</ul>
+
+<h4 style="color:#1abc9c;"><b>49–50. The Miracle of the Sea</b></h4>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<b>وَإِذْ نَجَّيْنَاكُم مِّنْ آلِ فِرْعَوْنَ يَسُومُونَكُمْ سُوءَ الْعَذَابِ... ﴿٤٩﴾ وَإِذْ فَرَقْنَا بِكُمُ الْبَحْرَ فَأَنجَيْنَاكُمْ وَأَغْرَقْنَا آلَ فِرْعَوْنَ وَأَنتُمْ تَنظُرُونَ ﴿٥٠﴾</b><br><br>
+
+<b>"And [recall] when We saved your forefathers from the people of Pharaoh... And [recall] when We parted the sea for you and saved you and drowned the people of Pharaoh while you were looking on."</b><br><br>
+
+<b>और (याद करो) जब हमने तुम्हें फ़िरऔन के लोगों से निजात दी जो तुम्हें बुरा अज़ाब देते थे... और जब हमने तुम्हारे लिए समंदर को फाड़ दिया और तुम्हें बचा लिया और फ़िरऔन वालों को डुबो दिया और तुम देख रहे थे।</b>
+</blockquote>
+
+<p><b>Literary Explanation</b></p>
+
+<p>
+This part vividly describes the transition from the "horrible torment" of slavery under Pharaoh to the "miraculous freedom" at the sea. It highlights that Allah didn't just save them; He let them *watch* as their powerful oppressor was defeated. The phrase "while you were looking on" indicates that the destruction of their enemy was made a public spectacle to heal their psychological wounds from generations of slavery.
+</p>
+
+<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
+
+<ul>
+<li>The "horrible torment" included the slaughter of their newborn sons and the sparing of their daughters for domestic servitude. This deliverance occurred on the day of *Ashura*, which the Prophet ﷺ later commanded Muslims to fast in gratitude, linking the history of Bani Isra'il to the Ummah of Islam.</li>
+
+<li>The parting of the sea is a sign of Allah’s absolute power over nature. It serves as a reminder that when a believer is trapped between an enemy and a sea, Allah can create a path where there seems to be none, provided there is faith and trust in the Divine promise.</li>
+</ul>
+
+<h4 style="color:#1abc9c;"><b>51–54. The Betrayal and Repentance</b></h4>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<b>وَإِذْ وَاعَدْنَا مُوسَىٰ أَرْبَعِينَ لَيْلَةً ثُمَّ اتَّخَذْتُمُ الْعِجْلَ مِن بَعْدِهِ... ﴿٥١﴾ ثُمَّ عَفَوْنَا عَنكُم مِّن بَعْدِ ذَٰلِكَ... ﴿٥٢﴾</b><br><br>
+
+<b>"And [recall] when We made an appointment with Moses for forty nights. Then you took the calf [for worship] after him... Then We forgave you after that..."</b><br><br>
+
+<b>और जब हमने मूसा (अलैहि.) से चालीस रातों का वादा किया, फिर उनके पीछे तुमने बछड़े को (माबूद) बना लिया... फिर हमने उसके बाद तुम्हें माफ़ कर दिया...</b>
+</blockquote>
+
+<p><b>Literary Explanation</b></p>
+
+<p>
+Here, the Quran exposes how fragile their faith was. As soon as Musa (AS) went to the mountain to receive the Torah, they went back to worshipping a golden calf. It shows that they were still mentally "enslaved" to visible idols. Their repentance required a very difficult physical and spiritual sacrifice—a "killing" of their old, sinful selves—to prove they were ready to return to pure Monotheism.
+</p>
+
+<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
+
+<ul>
+<li>The incident of the calf is a warning that spiritual instability often follows great miracles if the heart is not grounded. The command to "kill yourselves" (the guilty among them) was a severe test of their sincerity, showing that some sins are so grave that their purification requires extreme sacrifice.</li>
+
+<li>Even after such a massive sin, Allah used the word "forgave." This proves that there is no sin too great for Allah’s mercy, provided the repentance follows the Divine protocol. It highlights that the doors of mercy are never closed as long as a person is willing to admit their fault.</li>
+</ul>
+
+<h4 style="color:#1abc9c;"><b>55–56. The Thunderbolt and Rebirth</b></h4>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<b>وَإِذْ قُلْتُمْ يَا مُوسَىٰ لَن نُّؤْمِنَ لَكَ حَتَّىٰ نَرَى اللَّهَ جَهْرَةً فَأَخَذَتْكُمُ الصَّاعِقَةُ... ﴿٥٥﴾ ثُمَّ بَعَثْنَاكُم مِّن بَعْدِ مَوْتِكُمْ لَعَلَّكُمْ تَشْكُرُونَ ﴿٥٦﴾</b><br><br>
+
+<b>"And [recall] when you said, 'O Moses, we will never believe you until we see Allah outright'; so the thunderbolt took you... Then We revived you after your death that perhaps you would be grateful."</b><br><br>
+
+<b>और जब तुमने कहा, "ऐ मूसा! हम हरगिज़ तुम्हारा यक़ीन नहीं करेंगे जब तक हम अल्लाह को साफ़-साफ़ न देख लें"; तो तुम्हें बिजली ने आ पकड़ा... फिर हमने तुम्हें तुम्हारी मौत के बाद ज़िन्दा किया ताकि तुम शुक्रगुज़ार बनो।</b>
+</blockquote>
+
+<p><b>Literary Explanation</b></p>
+
+<p>
+This verse describes their ultimate stubbornness and materialist mindset. They demanded to see Allah with their physical eyes as a condition for faith. Since human eyes cannot endure the pure Majesty of Allah in this world, they were struck by a thunderbolt. But Allah, in His infinite mercy, brought them back to life—using the same word for "Resurrection"—to give them another chance to develop gratitude.
+</p>
+
+<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
+
+<ul>
+<li>Demanding to "see Allah" out of stubbornness is a sign of extreme disrespect (*Be-Adabi*). This event served as a "visual proof" of the Day of Resurrection, showing that life and death are entirely within Divine command and can be reversed at any moment.</li>
+
+<li>Being brought back to life after perishing was a "second chance" at existence. It highlights that the purpose of physical life is to develop spiritual gratitude (*Shukr*). Without gratitude, a person is spiritually dead even if they are physically breathing.</li>
+</ul>
+
+<h4 style="color:#1abc9c;"><b>57–59. The Provisions and the Mockery</b></h4>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<b>وَظَلَّلْنَا عَلَيْكُمُ الْغَمَامَ وَأَنزَلْنَا عَلَيْكُمُ الْمَنَّ وَالسَّلْوَىٰ... ﴿٥٧﴾ فَبَدَّلَ الَّذِينَ ظَلَمُوا قَوْلًا غَيْرَ الَّذِي قِيلَ لَهُمْ... ﴿٥٩﴾</b><br><br>
+
+<b>"And We shaded you with clouds and sent down to you manna and quails... But those who wronged changed [those words] to a statement other than that which had been said to them..."</b><br><br>
+
+<b>और हमने तुम पर बादलों का साया किया और तुम पर 'मन्न और सलवा' उतारा... मगर उन ज़ालिमों ने उस बात को बदल दिया जो उनसे कही गई थी...</b>
+</blockquote>
+
+<p><b>Literary Explanation</b></p>
+
+<p>
+Even in the hot desert, Allah protected them with "clouds" for shade and "heavenly food" (Manna and Salwa) that required no labor. However, when told to enter a city with humility saying a word of seeking forgiveness (*Hittatun*), they mockingly changed the word. Because they turned a sacred ritual into a joke, they faced a plague as a consequence. It shows that they were more concerned with their desires than their spiritual dignity.
+</p>
+
+<p><b>Tafsir (based on Ibn Kathir, Noor ul Irfan)</b></p>
+
+<ul>
+<li>The "cloud" followed them like a canopy in the wilderness, providing a constant miracle of comfort. The "plague" sent upon them was a direct result of their mocking the Divine command, proving that Allah does not tolerate the mockery of His rituals or the twisting of His words.</li>
+
+<li>Changing the word of repentance to a word of mockery (related to food) represents a deeper disease: the habit of twisting Divine commands to fit worldly desires. It teaches the believers that the specific words of *Dhikr* and *Salah* are fixed by Allah and must be respected exactly as they were taught.</li>
+</ul>
+
+`;
+const seerah4 = `
+
+<p>
+Long before the first words of the heavens touched the valley of Makkah, there was a man who moved through its alleys with such a gentle, observant grace that everyone, friend and foe alike, called him <b>Al-Amin</b>, the Trustworthy.
+</p>
+
+<p>
+Imagine a scorching afternoon some five years before the revelation. The <b>Kaaba</b>, the ancient heart of the city, had been battered by fierce floods. As the tribes finished the repairs, a bitter silence fell over the courtyard. A dispute had broken out: who would have the honor of placing the sacred Black Stone back into its corner? Pride was as sharp as a drawn sword, and a bloody tribal war was only a breath away. In that moment of intense pressure, Muhammad (PBUH) walked in. With a calm that seemed to come from another world, he did not take sides. Instead, he spread a large cloth upon the ground, placed the stone in its center, and invited a leader from every single clan to take hold of the fabric. Together, they lifted the stone as one body. It was a masterpiece of unity, mending a fractured society with a single simple gesture. Even then, the Meccans insisted that only "pure" wealth—money untainted by cheating or greed—could fund the sanctuary’s repair. It was a subtle sign that even in darkness, the human heart still seeks the light, just as the Quran reminds us:
+</p>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<i>"O mankind, eat from whatever is on earth [that is] lawful and good and do not follow the footsteps of Satan..."</i><br>
+<b>(Surah Al-Baqarah, 2:168)</b>
+</blockquote>
+
+<p>
+But his character was best seen in the quiet corners of his own home. Consider the young <b>Zayd ibn Harithah (RA)</b>. Zayd (RA) had been stolen from his family as a boy, yet in the Prophet’s (PBUH) house, he found a love so profound that when his biological father finally arrived with a purse of gold to ransom him, Zayd (RA) made a choice that stunned the city. He looked at the father who shared his blood, and then at the man who had raised him, and he chose to stay. He had found a nobility in Muhammad (PBUH) that transcended DNA. To honor this, the Prophet (PBUH) publicly adopted him, proving that the truest family is built on faith and shared values:
+</p>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<i>"The believers are but brothers, so make settlement between your brothers..."</i><br>
+<b>(Surah Al-Hujurat, 49:10)</b>
+</blockquote>
+
+<p>
+As the years drifted toward his fortieth winter, the noise of the city became too much. He began to seek the mountain air of <b>Jabal an-Nur</b>, finding peace in the small, shadowy <b>Cave of Hira</b>. There, under the velvet Arabian sky, the silence was eventually shattered by the Angel Jibril (AS). The first command, <b>"Read!"</b>, was met with a humble reply: <i>"I cannot read."</i> Jibril (AS) embraced him with a divine force that felt like the weight of the heavens, until finally, the first light of the Quran broke through:
+</p>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<i>"Recite in the name of your Lord who created... Who taught by the pen—Taught man that which he knew not."</i><br>
+<b>(Surah Al-'Alaq, 96:1-5)</b>
+</blockquote>
+
+<p>
+Trembling with the weight of the vision, he fled down the mountain to the warmth of his wife, <b>Khadijah (RA)</b>, who wrapped him in a blanket and even greater certainty. She reminded him that a man of his integrity—one who helped the poor and spoke the truth—would never be abandoned. Soon, the sky spoke again, commanding him to stand up. The time for quiet reflection was over; he was to arise and warn humanity, teaching us all that true nobility is not found in wealth or tribe, but in the righteousness of one's soul:
+</p>
+
+<blockquote style="background:#f9f9f9;padding:10px;border-left:4px solid #1abc9c;">
+<i>"Indeed, the most noble of you in the sight of Allah is the most righteous of you. Indeed, Allah is Knowing and Acquainted."</i><br>
+<b>(Surah Al-Hujurat, 49:13)</b>
+</blockquote>
+
+`;
+const story1 = `
+
+<p>
+The story of Suhail ibn Amr (RA) is a remarkable journey of a man who moved from being the most stubborn voice against Islam to becoming its most steadfast defender in Makkah. It is a story that proves the Prophet (PBUH) could see a spark of goodness in a person even when everyone else saw only an enemy.
+</p>
+
+<p>
+For years, Suhail (RA) was the elite orator of the Quraysh. His words were his weapons, and he used them to mock the Prophet (PBUH) and stir up the tribes against the Muslims. During the **Battle of Badr**, he was captured as a prisoner. When **Umar (RA)** saw him, he was filled with protective anger. He approached the Prophet (PBUH) and said, *"O Messenger of Allah, let me pull out his two front teeth! That way, his tongue will hang out and he can never stand to give a speech against you again."*
+</p>
+
+<p>
+But the Prophet (PBUH) looked at Suhail (RA) with a 
